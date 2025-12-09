@@ -10,7 +10,7 @@ import java.io.IOException;
 
 import javax.inject.Singleton;
 
-import jakarta.inject.Inject;
+import javax.inject.Inject;
 import lombok.RequiredArgsConstructor;
 import retrofit2.Call;
 import retrofit2.Response;
@@ -28,8 +28,7 @@ public class TokenManager {
     private static final String KEY_REFRESH_TOKEN = "refresh_token";
 
     private final SharedPreferences prefs;
-    private final ApiService apiService;
-
+    private final AuthApiService authApiService;
 
     /** Получение access токена */
     @Nullable
@@ -71,8 +70,8 @@ public class TokenManager {
         if (refresh == null) return null;
 
         try {
-            Call<TokenResponseDto> call = apiService.refreshToken(refresh);
-            Response<TokenResponseDto> response = call.execute();
+            Call<TokenResponseDto> call = authApiService.refreshToken(refresh);
+            retrofit2.Response<TokenResponseDto> response = call.execute();
 
             if (response.isSuccessful() && response.body() != null) {
                 TokenResponseDto body = response.body();
@@ -83,7 +82,6 @@ public class TokenManager {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return null;
     }
 }

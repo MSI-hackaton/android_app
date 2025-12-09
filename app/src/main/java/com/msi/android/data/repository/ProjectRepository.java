@@ -12,8 +12,8 @@ import com.msi.android.data.mapper.ProjectMapper;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import jakarta.inject.Inject;
-import jakarta.inject.Singleton;
+import javax.inject.Inject;
+import javax.inject.Singleton;
 import lombok.RequiredArgsConstructor;
 import retrofit2.Call;
 import retrofit2.Callback;

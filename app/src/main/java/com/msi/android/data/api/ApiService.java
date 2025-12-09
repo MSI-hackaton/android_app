@@ -17,11 +17,6 @@ import retrofit2.http.POST;
  */
 public interface ApiService {
 
-    @POST("auth/refresh")
-    Call<TokenResponseDto> refreshToken(@Body String refreshToken);
-
-    @POST("auth/login")
-    Call<TokenResponseDto> login(@Body LoginRequestDto request);
-    @GET("projects")
+    @GET("/api/projects")
     Call<List<ProjectDto>> getProjects();
 }
