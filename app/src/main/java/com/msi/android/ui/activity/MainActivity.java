@@ -51,8 +51,6 @@ public class MainActivity extends AppCompatActivity {
     private void initUi() {
         progressBar = findViewById(R.id.progressBar);
         recyclerView = findViewById(R.id.recyclerView);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         adapter = new ProjectAdapter();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

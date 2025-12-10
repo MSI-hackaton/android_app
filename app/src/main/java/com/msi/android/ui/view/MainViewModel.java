@@ -11,6 +11,7 @@ import com.msi.android.data.repository.ProjectRepository;
 import java.util.List;
 
 import javax.inject.Inject;
+
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor(onConstructor_ = @Inject)
@@ -24,6 +25,7 @@ public class MainViewModel extends ViewModel {
     }
 
     public LiveData<ResultDto<List<ProjectEntity>>> getProjects() {
+
         return projects;
     }
 
