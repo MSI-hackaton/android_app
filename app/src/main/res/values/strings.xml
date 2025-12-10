@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MSI</string>
+    <string name="search">Поиск</string>
+    <string name="filter">Фильтр</string>
 </resources>

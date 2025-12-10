@@ -3,7 +3,6 @@ package com.msi.android.di;
 import android.content.Context;
 
 import com.msi.android.ui.activity.MainActivity;
-import com.msi.android.ui.view.ViewModelModule;
 
 import dagger.BindsInstance;
 import dagger.Component;

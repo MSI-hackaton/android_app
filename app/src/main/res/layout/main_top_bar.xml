@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/topBar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:padding="12dp"
+    android:gravity="center_vertical"
+    android:background="?attr/colorSurface">
+
+    <ImageView
+        android:id="@+id/topbarLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:adjustViewBounds="true"
+        android:src="@drawable/logo"
+        android:contentDescription="МосСтройИнформ" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/topbarHomeButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:padding="8dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_home"
+        android:contentDescription="Главная"/>
+
+</LinearLayout>

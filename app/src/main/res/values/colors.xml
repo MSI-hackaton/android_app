@@ -6,6 +6,13 @@
     <color name="text_secondary">#6E6E73</color>
     <color name="accent">#007AFF</color>
 
+    <color name="md_theme_primary">#0D47A1</color>
+    <color name="md_theme_onPrimary">#FFFFFF</color>
+    <color name="md_theme_secondary">#FFC107</color>
+    <color name="md_theme_background">#FFFFFF</color>
+    <color name="md_theme_surface">#FFFFFF</color>
+    <color name="md_theme_error">#B00020</color>
+
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
