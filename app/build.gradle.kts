@@ -36,14 +36,21 @@ android {
 dependencies {
     implementation(libs.appcompat)
     implementation(libs.material)
-    implementation(libs.lombok)
     implementation(libs.retrofit2.retrofit)
     implementation(libs.converter.gson)
     implementation(libs.logging.interceptor)
-    implementation(libs.dagger)
-    implementation(libs.dagger.compiler)
     implementation(libs.mapstruct)
-    implementation(libs.mapstruct.processor)
+    implementation(libs.lifecycle.viewmodel)
+    implementation(libs.dagger)
+    implementation(libs.dagger.android)
+    implementation(libs.dagger.android.support)
+
+    compileOnly(libs.lombok)
+    annotationProcessor(libs.lombok)
+    annotationProcessor(libs.mapstruct.processor)
+    annotationProcessor(libs.dagger.compiler)
+    annotationProcessor(libs.dagger.android.processor)
+
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
