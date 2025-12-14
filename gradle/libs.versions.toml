@@ -6,6 +6,7 @@ espressoCore = "3.7.0"
 appcompat = "1.7.1"
 material = "1.13.0"
 lombok = "1.18.38"
+navigationFragment = "2.9.6"
 retrofit = "1.9.0"
 retrofitVersion = "3.0.0"
 converterGson = "3.0.0"
@@ -27,6 +28,8 @@ espresso-core = { group = "androidx.test.espresso", name = "espresso-core", vers
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 lombok = { group = "org.projectlombok", name = "lombok", version.ref = "lombok" }
+navigation-fragment = { module = "androidx.navigation:navigation-fragment", version.ref = "navigationFragment" }
+navigation-ui = { module = "androidx.navigation:navigation-ui", version.ref = "navigationFragment" }
 retrofit = { group = "com.squareup.retrofit", name = "retrofit", version.ref = "retrofit" }
 retrofit2-retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofitVersion" }
 converter-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "converterGson" }

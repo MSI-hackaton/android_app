@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#FFFFFF"
+    android:orientation="vertical"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp">
+
+    <!-- Разделительная линия сверху -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#DDDDDD" />
+
+    <!-- Контейнер для кнопок -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:orientation="horizontal"
+        android:weightSum="4"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp">
+
+        <!-- Кнопка "Главная" -->
+        <LinearLayout
+            android:id="@+id/homeButton"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <View
+                android:id="@+id/homeCircle"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginBottom="4dp"
+                android:background="@drawable/rounded_blue_background" />
+
+            <TextView
+                android:id="@+id/homeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Главная"
+                android:textColor="#3B82F6"
+                android:textSize="10sp" />
+        </LinearLayout>
+
+        <!-- Кнопка "Каталог" -->
+        <LinearLayout
+            android:id="@+id/catalogButton"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <View
+                android:id="@+id/catalogCircle"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginBottom="4dp"
+                android:background="@drawable/rounded_gray_background" />
+
+            <TextView
+                android:id="@+id/catalogText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Каталог"
+                android:textColor="#9CA3AF"
+                android:textSize="10sp" />
+        </LinearLayout>
+
+        <!-- Кнопка "Чат" -->
+        <LinearLayout
+            android:id="@+id/chatButton"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <View
+                android:id="@+id/chatCircle"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginBottom="4dp"
+                android:background="@drawable/rounded_gray_background" />
+
+            <TextView
+                android:id="@+id/chatText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Чат"
+                android:textColor="#9CA3AF"
+                android:textSize="10sp" />
+        </LinearLayout>
+
+        <!-- Кнопка "Личный кабинет" -->
+        <LinearLayout
+            android:id="@+id/profileButton"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <View
+                android:id="@+id/profileCircle"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginBottom="4dp"
+                android:background="@drawable/rounded_gray_background" />
+
+            <TextView
+                android:id="@+id/profileText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Личный\nкабинет"
+                android:textColor="#9CA3AF"
+                android:textSize="10sp"
+                android:gravity="center"
+                android:singleLine="false"
+                android:maxLines="2"
+                android:lineSpacingExtra="-2dp"
+                />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
