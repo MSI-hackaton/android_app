@@ -7,9 +7,8 @@ import com.msi.android.data.dto.TokenResponseDto;
 import java.util.List;
 
 import retrofit2.Call;
-import retrofit2.http.Body;
 import retrofit2.http.GET;
-import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 /**
  * Сервисный слой, предоставляющий операции
@@ -19,4 +18,8 @@ public interface ApiService {
 
     @GET("/api/projects")
     Call<List<ProjectDto>> getProjects();
+
+    @GET("/api/projects/{id}")
+    Call<ProjectDto> getProjectById(@Path("id") String id);
+
 }
