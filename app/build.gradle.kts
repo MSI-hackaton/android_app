@@ -44,6 +44,8 @@ dependencies {
     implementation(libs.dagger)
     implementation(libs.dagger.android)
     implementation(libs.dagger.android.support)
+    implementation(libs.navigation.fragment)
+    implementation(libs.navigation.ui)
 
     compileOnly(libs.lombok)
     annotationProcessor(libs.lombok)
