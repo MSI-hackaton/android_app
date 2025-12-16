@@ -1,16 +1,21 @@
-<?xml version="1.0" encoding="utf-8"?>
-<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/firstFragment">
+    app:startDestination="@id/projectsListFragment">
 
     <fragment
-        android:id="@+id/firstFragment"
-        android:name="com.msi.android.ui.fragment.NavigationBar"
-        android:label="FirstFragment">
+        android:id="@+id/projectsListFragment"
+        android:name="com.msi.android.ui.fragment.ProjectsListFragment"
+        android:label="Projects" />
+
+    <fragment
+        android:id="@+id/projectDetailsFragment"
+        android:name="com.msi.android.ui.fragment.ProjectDetailsFragment">
+
+        <argument
+            android:name="projectId"
+            app:argType="string" />
     </fragment>
-
-
 
 </navigation>

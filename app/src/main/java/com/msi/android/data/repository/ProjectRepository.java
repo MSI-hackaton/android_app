@@ -67,4 +67,30 @@ public class ProjectRepository {
         }
     }
 
+    public LiveData<ResultDto<ProjectEntity>> getProjectById(String id) {
+        MutableLiveData<ResultDto<ProjectEntity>> liveData = new MutableLiveData<>();
+        liveData.setValue(ResultDto.loading());
+
+        Call<ProjectDto> call = apiService.getProjectById(id);
+        call.enqueue(new Callback<ProjectDto>() {
+            @Override
+            public void onResponse(Call<ProjectDto> call, Response<ProjectDto> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    ProjectEntity entity =
+                            ProjectMapper.INSTANCE.dtoToEntity(response.body());
+                    liveData.setValue(ResultDto.success(entity));
+                } else {
+                    liveData.setValue(ResultDto.error("Ошибка сервера: " + response.code()));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ProjectDto> call, Throwable t) {
+                liveData.setValue(ResultDto.error("Проблема с сетью: " + t.getMessage()));
+            }
+        });
+
+        return liveData;
+    }
+
 }

@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.msi.android.ui.view.MainViewModel;
+import com.msi.android.ui.view.ProjectDetailsViewModel;
 import com.msi.android.ui.view.SecondViewModel;
 import com.msi.android.ui.view.ViewModelFactory;
 
@@ -27,6 +28,11 @@ public abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(MainViewModel.class)
     abstract ViewModel bindMainViewModel(MainViewModel viewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ProjectDetailsViewModel.class)
+    abstract ViewModel bindProjectDetailsViewModel(ProjectDetailsViewModel viewModel);
 
     @Binds
     @IntoMap

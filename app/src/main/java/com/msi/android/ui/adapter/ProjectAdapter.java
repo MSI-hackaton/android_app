@@ -16,8 +16,13 @@ import com.msi.android.data.entity.ProjectEntity;
 
 public class ProjectAdapter extends ListAdapter<ProjectEntity, ProjectAdapter.ProjectViewHolder> {
 
+    private OnProjectClickListener clickListener;
     public ProjectAdapter() {
         super(DIFF_CALLBACK);
+    }
+
+    public interface OnProjectClickListener {
+        void onProjectClick(ProjectEntity project);
     }
 
     private static final DiffUtil.ItemCallback<ProjectEntity> DIFF_CALLBACK = new DiffUtil.ItemCallback<ProjectEntity>() {
@@ -40,11 +45,16 @@ public class ProjectAdapter extends ListAdapter<ProjectEntity, ProjectAdapter.Pr
         );
     }
 
+    public void setOnProjectClickListener(OnProjectClickListener listener) {
+        this.clickListener = listener;
+    }
+
     @Override
     public void onBindViewHolder(@NonNull ProjectViewHolder holder, int position) {
-        holder.bind(getItem(position));
+        holder.bind(getItem(position), clickListener);
     }
     static class ProjectViewHolder extends RecyclerView.ViewHolder {
+
         TextView title, description, price;
         ImageView image;
 
@@ -56,12 +66,19 @@ public class ProjectAdapter extends ListAdapter<ProjectEntity, ProjectAdapter.Pr
             image = itemView.findViewById(R.id.projectImage);
         }
 
-        public void bind(ProjectEntity project) {
+        public void bind(ProjectEntity project, OnProjectClickListener listener) {
             title.setText(project.getTitle());
             description.setText(project.getDescription());
             price.setText(String.valueOf(project.getPrice()));
             image.setImageResource(android.R.drawable.ic_menu_gallery);
+
+            itemView.setOnClickListener(v -> {
+                if (listener != null) {
+                    listener.onProjectClick(project);
+                }
+            });
         }
     }
+
 
 }
