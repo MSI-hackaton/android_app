@@ -3,6 +3,8 @@ package com.msi.android.di;
 import android.content.Context;
 
 import com.msi.android.ui.activity.MainActivity;
+import com.msi.android.ui.fragment.AuthFragment;
+import com.msi.android.ui.fragment.NavigationBar;
 import com.msi.android.ui.fragment.ProjectDetailsFragment;
 import com.msi.android.ui.fragment.ProjectsListFragment;
 
@@ -17,7 +19,9 @@ import javax.inject.Singleton;
 public interface AppComponent {
 
     void inject(MainActivity activity);
-    void inject(ProjectDetailsFragment activity);
+    void inject(NavigationBar bar);
+    void inject(AuthFragment fragment);
+    void inject(ProjectDetailsFragment fragment);
     void inject(ProjectsListFragment fragment);
 
     @Component.Builder

@@ -3,6 +3,7 @@ package com.msi.android.di;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.msi.android.ui.view.AuthViewModel;
 import com.msi.android.ui.view.MainViewModel;
 import com.msi.android.ui.view.ProjectDetailsViewModel;
 import com.msi.android.ui.view.SecondViewModel;
@@ -33,6 +34,11 @@ public abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(ProjectDetailsViewModel.class)
     abstract ViewModel bindProjectDetailsViewModel(ProjectDetailsViewModel viewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(AuthViewModel.class)
+    abstract ViewModel bindAuthViewModel(AuthViewModel viewModel);
 
     @Binds
     @IntoMap

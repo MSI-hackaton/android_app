@@ -18,4 +18,17 @@
             app:argType="string" />
     </fragment>
 
+    <!-- Личный кабинет -->
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.msi.android.ui.fragment.ProfileFragment"
+        android:label="Личный кабинет" />
+
+    <!-- Авторизация -->
+    <fragment
+        android:id="@+id/authFragment"
+        android:name="com.msi.android.ui.fragment.AuthFragment"
+        android:label="Авторизация" />
+
+
 </navigation>

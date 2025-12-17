@@ -84,4 +84,8 @@ public class TokenManager {
         }
         return null;
     }
+
+    public boolean isAuthorized() {
+        return getAccessToken() != null;
+    }
 }
