@@ -3,7 +3,6 @@ package com.msi.android.data.dto;
 import lombok.Data;
 
 @Data
-public class LoginRequestDto {
+public class CodeRequestDto {
     private String identifier;
-    private String code;
 }
