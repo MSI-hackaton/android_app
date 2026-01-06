@@ -16,11 +16,11 @@ public class ProjectEntity {
     private double price;
     private String status;
 
-    private List<String> photos;
+    private List<PhotoEntity> photos;
 
     public String getPreviewPhoto() {
         return (photos != null && !photos.isEmpty())
-                ? photos.get(0)
+                ? photos.get(0).getUrl()
                 : null;
     }
 

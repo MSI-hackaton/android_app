@@ -14,5 +14,5 @@ public class ProjectDto {
     private int constructionTime;
     private double price;
     private String status;
-    private List<String> photos;
+    private List<PhotoDto> photos;
 }
