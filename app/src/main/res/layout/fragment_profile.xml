@@ -43,6 +43,14 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="16dp">
 
+                        <TextView
+                            android:text="Добро пожаловать"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
                         <!-- Status dot -->
                         <View
                             android:layout_width="12dp"
@@ -51,23 +59,101 @@
                             android:background="@android:color/transparent"
                             android:backgroundTint="@color/md_theme_primary"/>
 
-                        <TextView
-                            android:text="Добро пожаловать"
-                            android:textSize="18sp"
-                            android:textStyle="bold"
-                            android:textColor="@color/black"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
                     </LinearLayout>
 
                     <!-- Description -->
+                    <LinearLayout
+                        android:id="@+id/project_info_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:text="Ваш проект:"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:alpha="0.6"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"/>
+
+                        <TextView
+                            android:id="@+id/tv_project_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:layout_marginBottom="12dp"/>
+
+                        <TextView
+                            android:text="Описание:"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:alpha="0.6"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"/>
+
+                        <TextView
+                            android:id="@+id/tv_project_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:layout_marginBottom="12dp"/>
+
+                        <TextView
+                            android:text="Текущий статус:"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:alpha="0.6"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"/>
+
+                        <TextView
+                            android:id="@+id/tv_project_status"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:layout_marginBottom="12dp"/>
+
+                        <TextView
+                            android:text="Период строительства:"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:alpha="0.6"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"/>
+
+                        <TextView
+                            android:id="@+id/tv_project_dates"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:layout_marginBottom="16dp"/>
+
+                    </LinearLayout>
+
+
+
                     <TextView
+                        android:id="@+id/tv_no_project"
                         android:text="Выберите проект в каталоге"
                         android:textColor="@color/md_theme_primary"
                         android:alpha="0.7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="16dp"/>
+
 
                     <!-- Progress header -->
                     <LinearLayout
