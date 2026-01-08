@@ -66,4 +66,10 @@
         android:name="com.msi.android.ui.fragment.FinalReportFragment"
         android:label="Итоговый отчет"/>
 
+    <!-- Подписание акта -->
+    <fragment
+        android:id="@+id/signActFragement"
+        android:name="com.msi.android.ui.fragment.SignActFragment"
+        android:label="Подписание акта"/>
+
 </navigation>

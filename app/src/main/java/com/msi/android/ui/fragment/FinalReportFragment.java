@@ -86,7 +86,7 @@ public class FinalReportFragment extends Fragment {
 
         // Кнопка подписания
         view.findViewById(R.id.btn_sign_documents).setOnClickListener(v -> {
-            Toast.makeText(getContext(), "Переход к подписанию документов", Toast.LENGTH_SHORT).show();
+            NavHostFragment.findNavController(this).navigate(R.id.signActFragement);
         });
     }
 

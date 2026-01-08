@@ -12,6 +12,7 @@ import com.msi.android.ui.fragment.PreparationStageFragment;
 import com.msi.android.ui.fragment.ProfileFragment;
 import com.msi.android.ui.fragment.ProjectDetailsFragment;
 import com.msi.android.ui.fragment.ProjectsListFragment;
+import com.msi.android.ui.fragment.SignActFragment;
 import com.msi.android.ui.fragment.VideoStreamFragment;
 import com.msi.android.ui.fragment.WarrantyFragment;
 
@@ -43,7 +44,7 @@ public interface AppComponent {
 
     void inject(FinalReportFragment fragment);
 
-
+    void inject(SignActFragment fragment);
 
     void inject(ProfileFragment fragment);
 
