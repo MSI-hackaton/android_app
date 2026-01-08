@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.msi.android.App;
 import com.msi.android.R;
@@ -68,12 +69,12 @@ public class AcceptanceFragment extends Fragment {
 
         // Кнопка "Принять работу"
         view.findViewById(R.id.btn_accept_work).setOnClickListener(v -> {
-            Toast.makeText(getContext(), "Функция в разработке", Toast.LENGTH_SHORT).show();
+            NavHostFragment.findNavController(this).navigate(R.id.finalReportFragment);
         });
 
         // Ссылка "Принять работу" в уведомлении
         view.findViewById(R.id.tv_accept_work_link).setOnClickListener(v -> {
-            Toast.makeText(getContext(), "Функция в разработке", Toast.LENGTH_SHORT).show();
+            NavHostFragment.findNavController(this).navigate(R.id.finalReportFragment);
         });
 
         // Карточка "Документы"

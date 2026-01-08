@@ -59,4 +59,11 @@
         android:id="@+id/warrantyFragment"
         android:name="com.msi.android.ui.fragment.WarrantyFragment"
         android:label="Гарантия" />
+
+    <!-- Итоговый отчет -->
+    <fragment
+        android:id="@+id/finalReportFragment"
+        android:name="com.msi.android.ui.fragment.FinalReportFragment"
+        android:label="Итоговый отчет"/>
+
 </navigation>
