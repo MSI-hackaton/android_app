@@ -188,6 +188,17 @@
                         android:alpha="0.2"
                         app:trackCornerRadius="8dp"/>
 
+                    <!-- Кнопка "Смотреть трансляцию" (показывается только на этапе стройки) -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_watch_stream"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Смотреть трансляцию"
+                        android:textColor="@color/md_theme_onPrimary"
+                        app:backgroundTint="@color/blue"
+                        app:cornerRadius="12dp"
+                        android:visibility="gone"/>
+
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 

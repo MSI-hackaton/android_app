@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.button.MaterialButton;
 import com.msi.android.App;
 import com.msi.android.R;
 import com.msi.android.data.api.ApiService;
@@ -67,13 +68,28 @@ public class ProfileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        // Найти view элементы
         LinearLayout projectInfoContainer = view.findViewById(R.id.project_info_container);
         TextView tvNoProject = view.findViewById(R.id.tv_no_project);
         TextView tvProjectName = view.findViewById(R.id.tv_project_name);
         TextView tvProjectDescription = view.findViewById(R.id.tv_project_description);
         TextView tvProjectStatus = view.findViewById(R.id.tv_project_status);
         TextView tvProjectDates = view.findViewById(R.id.tv_project_dates);
+        MaterialButton btnWatchStream = view.findViewById(R.id.btn_watch_stream);
 
+        // Обработчик кнопки "Подготовка"
+        view.findViewById(R.id.btn_stage_preparation).setOnClickListener(v -> {
+            btnWatchStream.setVisibility(View.GONE);
+            showStageFragment(new PreparationStageFragment());
+        });
+
+        // Обработчик кнопки "Стройка"
+        view.findViewById(R.id.btn_stage_construction).setOnClickListener(v -> {
+            btnWatchStream.setVisibility(View.VISIBLE);
+            showStageFragment(new ConstructionFragment());
+        });
+
+        // Получить ID текущего пользователя
         String userId = getUserId();
         Log.d("ProfileFragment", "userId: " + userId);
 
@@ -85,10 +101,6 @@ public class ProfileFragment extends Fragment {
             projectInfoContainer.setVisibility(View.GONE);
             tvNoProject.setVisibility(View.VISIBLE);
         }
-
-        view.findViewById(R.id.btn_stage_preparation).setOnClickListener(v -> {
-            showStageFragment(new PreparationStageFragment());
-        });
     }
 
     private void loadProjectInfo(String userId, LinearLayout container, TextView tvNoProject,
@@ -187,25 +199,18 @@ public class ProfileFragment extends Fragment {
     }
 
     private void showStageFragment(Fragment fragment) {
-        FrameLayout container = getView().findViewById(R.id.stage_fragment_container);
-
+        // Передаём все данные через Bundle
         Bundle args = new Bundle();
         args.putString("projectId", currentProjectId);
         args.putString("constructionStageId", currentConstructionStageId);
         args.putString("startDate", currentStartDate);
         fragment.setArguments(args);
 
-        if (container.getChildCount() > 0) {
-            getChildFragmentManager()
-                    .beginTransaction()
-                    .remove(Objects.requireNonNull(getChildFragmentManager().findFragmentById(R.id.stage_fragment_container)))
-                    .commit();
-        } else {
-            getChildFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.stage_fragment_container, fragment)
-                    .commit();
-        }
+        // Всегда заменяем фрагмент
+        getChildFragmentManager()
+                .beginTransaction()
+                .replace(R.id.stage_fragment_container, fragment)
+                .commit();
     }
 }
 

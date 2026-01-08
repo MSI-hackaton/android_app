@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.msi.android.ui.activity.MainActivity;
 import com.msi.android.ui.fragment.AuthFragment;
+import com.msi.android.ui.fragment.ConstructionFragment;
 import com.msi.android.ui.fragment.NavigationBar;
 import com.msi.android.ui.fragment.PreparationStageFragment;
 import com.msi.android.ui.fragment.ProfileFragment;
@@ -27,6 +28,8 @@ public interface AppComponent {
     void inject(ProjectsListFragment fragment);
 
     void inject(PreparationStageFragment fragment);
+
+    void inject(ConstructionFragment fragment);
 
 
     void inject(ProfileFragment fragment);
