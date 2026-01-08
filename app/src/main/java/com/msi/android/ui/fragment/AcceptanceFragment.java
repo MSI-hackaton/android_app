@@ -79,7 +79,7 @@ public class AcceptanceFragment extends Fragment {
 
         // Карточка "Документы"
         view.findViewById(R.id.card_documents).setOnClickListener(v -> {
-            Toast.makeText(getContext(), "Открыть документы", Toast.LENGTH_SHORT).show();
+            NavHostFragment.findNavController(this).navigate(R.id.documentsFragement);
         });
 
         // Карточка "Чат"

@@ -25,5 +25,7 @@
     <color name="acceptance_border_purple">#e9d4ff</color>
     <color name="final_report_background_blue">#faf5ff</color>
     <color name="final_report_border_purple">#e9d4ff</color>
+    <color name="document_background_gray">#fbf9fa</color>
+
 
     </resources>

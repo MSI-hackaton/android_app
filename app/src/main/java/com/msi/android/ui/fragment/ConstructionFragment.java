@@ -71,7 +71,7 @@ public class ConstructionFragment extends Fragment {
 
         // Обработчики быстрых действий
         view.findViewById(R.id.card_documents).setOnClickListener(v -> {
-            Toast.makeText(getContext(), "Открыть документы", Toast.LENGTH_SHORT).show();
+            NavHostFragment.findNavController(this).navigate(R.id.documentsFragement);
         });
 
         view.findViewById(R.id.card_video).setOnClickListener(v -> {

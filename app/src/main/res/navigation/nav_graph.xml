@@ -72,4 +72,10 @@
         android:name="com.msi.android.ui.fragment.SignActFragment"
         android:label="Подписание акта"/>
 
+    <!-- Окно документов -->
+    <fragment
+        android:id="@+id/documentsFragement"
+        android:name="com.msi.android.ui.fragment.DocumentsFragment"
+        android:label="Окно документов"/>
+
 </navigation>

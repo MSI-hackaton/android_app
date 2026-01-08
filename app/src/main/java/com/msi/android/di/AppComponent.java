@@ -6,6 +6,7 @@ import com.msi.android.ui.activity.MainActivity;
 import com.msi.android.ui.fragment.AcceptanceFragment;
 import com.msi.android.ui.fragment.AuthFragment;
 import com.msi.android.ui.fragment.ConstructionFragment;
+import com.msi.android.ui.fragment.DocumentsFragment;
 import com.msi.android.ui.fragment.FinalReportFragment;
 import com.msi.android.ui.fragment.NavigationBar;
 import com.msi.android.ui.fragment.PreparationStageFragment;
@@ -43,6 +44,8 @@ public interface AppComponent {
     void inject(WarrantyFragment fragment);
 
     void inject(FinalReportFragment fragment);
+
+    void inject(DocumentsFragment fragment);
 
     void inject(SignActFragment fragment);
 

@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.msi.android.App;
 import com.msi.android.R;
@@ -68,7 +69,7 @@ public class PreparationStageFragment extends Fragment {
 
         // Обработчики быстрых действий
         view.findViewById(R.id.card_documents).setOnClickListener(v -> {
-            Toast.makeText(getContext(), "Открыть документы", Toast.LENGTH_SHORT).show();
+            NavHostFragment.findNavController(this).navigate(R.id.documentsFragement);
         });
 
         view.findViewById(R.id.card_chat).setOnClickListener(v -> {
@@ -77,6 +78,11 @@ public class PreparationStageFragment extends Fragment {
 
         // Настройка кнопок навигации
         StageNavigationHelper.setupStageButtons(this, view);
+
+        // Ссылка на документы
+        view.findViewById(R.id.link_documents).setOnClickListener(v -> {
+            NavHostFragment.findNavController(this).navigate(R.id.documentsFragement);
+        });
     }
 
     private void loadProjectInfo(View view) {
