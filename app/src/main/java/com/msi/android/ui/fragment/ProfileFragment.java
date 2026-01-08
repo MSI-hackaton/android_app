@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.google.android.material.button.MaterialButton;
 import com.msi.android.App;
@@ -100,6 +101,27 @@ public class ProfileFragment extends Fragment {
             Log.e("ProfileFragment", "userId is NULL!");
             projectInfoContainer.setVisibility(View.GONE);
             tvNoProject.setVisibility(View.VISIBLE);
+        }
+        // Обработчик кнопки "Смотреть трансляцию"
+        view.findViewById(R.id.btn_watch_stream).setOnClickListener(v -> {
+            Bundle args = new Bundle();
+            args.putString("constructionId", currentConstructionStageId);
+            NavHostFragment.findNavController(this).navigate(R.id.videoStreamFragment, args);
+        });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        // Кнопка показывается, только если  режим стройки активирован
+        View btnWatchStream = getView().findViewById(R.id.btn_watch_stream);
+        if (btnWatchStream != null) {
+            if (currentConstructionStageId != null && !currentConstructionStageId.isEmpty()) {
+                btnWatchStream.setVisibility(View.VISIBLE);
+            } else {
+                btnWatchStream.setVisibility(View.GONE);
+            }
         }
     }
 

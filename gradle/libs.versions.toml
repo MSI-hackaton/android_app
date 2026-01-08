@@ -20,6 +20,9 @@ lifecycleViewmodel = "2.10.0"
 daggerAndroid = "2.56.2"
 daggerAndroidProcessor = "2.56.2"
 daggerAndroidSupport = "2.56.2"
+media3-exoplayer = "1.2.0"
+media3-ui = "1.2.0"
+media3-exoplayer-hls = "1.2.0"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -43,6 +46,11 @@ lifecycle-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmode
 dagger-android = { group = "com.google.dagger", name = "dagger-android", version.ref = "daggerAndroid" }
 dagger-android-processor = { group = "com.google.dagger", name = "dagger-android-processor", version.ref = "daggerAndroidProcessor" }
 dagger-android-support = { group = "com.google.dagger", name = "dagger-android-support", version.ref = "daggerAndroidSupport" }
+media3-exoplayer = { group = "androidx.media3", name = "media3-exoplayer", version.ref = "media3-exoplayer" }
+media3-ui = { group = "androidx.media3", name = "media3-ui", version.ref = "media3-ui" }
+media3-hls = { group = "androidx.media3", name = "media3-exoplayer-hls", version.ref = "media3-exoplayer-hls" }
+
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

@@ -10,6 +10,7 @@ import com.msi.android.ui.fragment.PreparationStageFragment;
 import com.msi.android.ui.fragment.ProfileFragment;
 import com.msi.android.ui.fragment.ProjectDetailsFragment;
 import com.msi.android.ui.fragment.ProjectsListFragment;
+import com.msi.android.ui.fragment.VideoStreamFragment;
 
 import dagger.BindsInstance;
 import dagger.Component;
@@ -30,6 +31,9 @@ public interface AppComponent {
     void inject(PreparationStageFragment fragment);
 
     void inject(ConstructionFragment fragment);
+
+    void inject(VideoStreamFragment fragment);
+
 
 
     void inject(ProfileFragment fragment);

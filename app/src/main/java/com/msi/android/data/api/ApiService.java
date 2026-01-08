@@ -2,6 +2,7 @@ package com.msi.android.data.api;
 
 import com.msi.android.data.dto.ConstructionStageResponseDto;
 import com.msi.android.data.dto.ProjectDto;
+import com.msi.android.data.dto.VideoStreamResponseDto;
 
 import java.util.List;
 
@@ -24,4 +25,6 @@ public interface ApiService {
     @GET("/api/construction-stages/customer/{customerId}")
     Call<List<ConstructionStageResponseDto>> getConstructionStagesByCustomer(@Path("customerId") String customerId);
 
+    @GET("/api/video-streams/constructions/{constructionId}")
+    Call<List<VideoStreamResponseDto>> getVideoStreams(@Path("constructionId") String constructionId);
 }

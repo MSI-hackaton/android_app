@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.msi.android.App;
 import com.msi.android.R;
@@ -90,6 +91,12 @@ public class ConstructionFragment extends Fragment {
         if (projectId != null) {
             viewModel.loadProject(projectId);
         }
+
+        // Обработчик кнопки "Видео"
+        view.findViewById(R.id.card_video).setOnClickListener(v -> {
+            args.putString("constructionId", constructionStageId);
+            NavHostFragment.findNavController(this).navigate(R.id.videoStreamFragment, args);
+        });
     }
 
     private void bindProjectData(ProjectEntity project) {

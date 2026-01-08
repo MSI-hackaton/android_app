@@ -30,5 +30,9 @@
         android:name="com.msi.android.ui.fragment.AuthFragment"
         android:label="Авторизация" />
 
-
+    <!-- Видеонаблюдение -->
+    <fragment
+        android:id="@+id/videoStreamFragment"
+        android:name="com.msi.android.ui.fragment.VideoStreamFragment"
+        android:label="Видеонаблюдение"/>
 </navigation>

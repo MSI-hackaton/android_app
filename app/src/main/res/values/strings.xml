@@ -3,4 +3,8 @@
     <string name="search">Поиск</string>
     <string name="filter">Фильтр</string>
     <string name="project_area_format">%.0f м²</string>
+    <string name="back">Назад</string>
+    <string name="video_stream">Видеопоток</string>
+    <string name="date">Дата</string>
+    <string name="time">Время</string>
 </resources>
