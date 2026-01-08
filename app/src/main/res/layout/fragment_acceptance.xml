@@ -26,7 +26,7 @@
                 app:cardCornerRadius="16dp"
                 app:cardElevation="4dp"
                 app:cardBackgroundColor="@color/md_theme_surface"
-                app:strokeColor="@color/preparation_border_gray"
+                app:strokeColor="@color/gray"
                 app:strokeWidth="1dp">
 
                 <LinearLayout
@@ -97,21 +97,21 @@
 
                         <TextView
                             android:id="@+id/tv_project_status"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="12dp"
                             android:textColor="@color/black"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
+                            android:layout_marginBottom="12dp"/>
 
                         <TextView
+                            android:text="Период строительства:"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:alpha="0.6"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="4dp"
-                            android:alpha="0.6"
-                            android:text="Период строительства:"
-                            android:textColor="@color/black"
-                            android:textSize="14sp" />
+                            android:layout_marginBottom="4dp"/>
 
                         <TextView
                             android:id="@+id/tv_project_dates"
@@ -139,7 +139,8 @@
                             android:layout_weight="1"/>
 
                         <TextView
-                            android:text="10%"
+                            android:id="@+id/tv_progress_percent"
+                            android:text="90%"
                             android:textStyle="bold"
                             android:textColor="@color/black"
                             android:layout_width="wrap_content"
@@ -147,89 +148,43 @@
                     </LinearLayout>
 
                     <com.google.android.material.progressindicator.LinearProgressIndicator
+                        android:id="@+id/progress_bar"
                         android:layout_width="match_parent"
                         android:layout_height="6dp"
-                        android:progress="10"
-                        app:indicatorColor="@color/md_theme_primary"
+                        android:progress="90"
+                        app:indicatorColor="@color/blue"
                         app:trackColor="@color/preparation_border_gray"
                         app:trackCornerRadius="8dp"/>
+
+                    <!-- Кнопка "Принять работу" -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_accept_work"
+                        android:layout_marginTop="20dp"
+                        android:text="Принять работу"
+                        android:textSize="16sp"
+                        android:textColor="@color/white"
+                        android:backgroundTint="@color/blue"
+                        app:cornerRadius="12dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"/>
+
                 </LinearLayout>
+
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- Карточка: Документы готовы к подписанию -->
+
+
+
+            <!-- Уведомление о завершении -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="4dp"
-                app:cardBackgroundColor="#E3F2FD"
-                app:strokeColor="@color/preparation_border_blue"
-                app:strokeWidth="1dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="16dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:layout_marginEnd="8dp"
-                            android:src="@drawable/ic_document"
-                            app:tint="@color/document_blue" />
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="Документы готовы к подписанию"
-                            android:textColor="@color/preparation_heading_blue"
-                            android:textSize="18sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="32sp"
-                        android:layout_marginBottom="12dp"
-                        android:alpha="0.7"
-                        android:text="Договор подряда, смета и график работ требуют вашего внимания"
-                        android:textColor="@color/preparation_text_blue"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="32sp"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:text="Перейти к документам →"
-                        android:textColor="@color/document_blue"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <!-- Карточка: Быстрые действия -->
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="4dp"
-                app:cardBackgroundColor="@color/md_theme_surface"
-                app:strokeColor="@color/preparation_border_gray"
-                app:strokeWidth="1dp">
+                android:layout_marginBottom="24dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="0dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="@color/acceptance_border_purple"
+                app:cardBackgroundColor="#F3E8FF">
 
                 <LinearLayout
                     android:orientation="vertical"
@@ -237,97 +192,142 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <TextView
-                        android:text="Быстрые действия"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/black"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="12dp"/>
-
                     <LinearLayout
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:weightSum="2">
+                        android:layout_marginBottom="8dp">
 
-                        <!-- Документы -->
-                        <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/card_documents"
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_check"
+                            app:tint="@color/purple"
+                            android:layout_marginEnd="8dp"/>
+
+                        <TextView
+                            android:text="Поздравляем! Ваш дом построен"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/acceptance_heading_purple"
                             android:layout_width="0dp"
                             android:layout_weight="1"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="6dp"
-                            app:cardCornerRadius="12dp"
-                            app:cardElevation="0dp"
-                            app:strokeColor="@color/preparation_border_gray"
-                            app:strokeWidth="1dp">
-
-                            <LinearLayout
-                                android:orientation="vertical"
-                                android:gravity="center"
-                                android:padding="20dp"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <ImageView
-                                    android:layout_width="32dp"
-                                    android:layout_height="32dp"
-                                    android:src="@drawable/ic_document"
-                                    android:layout_marginBottom="8dp"
-                                    app:tint="@color/document_blue" />
-
-                                <TextView
-                                    android:text="Документы"
-                                    android:textSize="14sp"
-                                    android:textColor="@color/black"
-                                    android:gravity="center"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"/>
-                            </LinearLayout>
-                        </com.google.android.material.card.MaterialCardView>
-
-                        <!-- Чат -->
-                        <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/card_chat"
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="6dp"
-                            app:cardCornerRadius="12dp"
-                            app:cardElevation="0dp"
-                            app:strokeColor="@color/preparation_border_gray"
-                            app:strokeWidth="1dp">
-
-                            <LinearLayout
-                                android:orientation="vertical"
-                                android:gravity="center"
-                                android:padding="20dp"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <ImageView
-                                    android:layout_width="32dp"
-                                    android:layout_height="32dp"
-                                    android:src="@drawable/ic_chat"
-                                    android:layout_marginBottom="8dp"
-                                    app:tint="@color/purple" />
-
-                                <TextView
-                                    android:text="Чат"
-                                    android:textSize="14sp"
-                                    android:textColor="@color/black"
-                                    android:gravity="center"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"/>
-                            </LinearLayout>
-                        </com.google.android.material.card.MaterialCardView>
+                            android:layout_height="wrap_content"/>
                     </LinearLayout>
+
+                    <TextView
+                        android:text="Пожалуйста, ознакомьтесь с итоговым отчетом и подпишите акты приема-передачи"
+                        android:textSize="15sp"
+                        android:layout_marginStart="32sp"
+                        android:textColor="@color/acceptance_text_purple"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"/>
+
+                    <TextView
+                        android:id="@+id/tv_accept_work_link"
+                        android:text="Принять работу →"
+                        android:layout_marginStart="32sp"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/purple"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
+            <!-- Быстрые действия -->
+            <TextView
+                android:text="Быстрые действия"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"/>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp">
+
+                <!-- Документы -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/card_documents"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="0dp"
+                    app:strokeColor="@color/preparation_border_gray"
+                    app:strokeWidth="1dp">
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="24dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:src="@drawable/ic_document"
+                            app:tint="@color/blue"
+                            android:layout_marginBottom="8dp"/>
+
+                        <TextView
+                            android:text="Документы"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:gravity="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Чат -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/card_chat"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="0dp"
+                    app:strokeColor="@color/preparation_border_gray"
+                    app:strokeWidth="1dp">
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="24dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:src="@drawable/ic_chat"
+                            app:tint="@color/blue"
+                            android:layout_marginBottom="8dp"/>
+
+                        <TextView
+                            android:text="Чат"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:gravity="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
             <include layout="@layout/include_project_info_card"/>
+
+
         </LinearLayout>
     </ScrollView>
 

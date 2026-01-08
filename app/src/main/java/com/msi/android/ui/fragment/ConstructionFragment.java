@@ -16,22 +16,34 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.msi.android.App;
 import com.msi.android.R;
-import com.msi.android.data.entity.ProjectEntity;
-import com.msi.android.ui.view.ProjectDetailsViewModel;
+import com.msi.android.data.api.ApiService;
+import com.msi.android.data.api.TokenManager;
+import com.msi.android.data.dto.ConstructionStageResponseDto;
+import com.msi.android.ui.helper.ProjectInfoHelper;
+import com.msi.android.ui.helper.StageNavigationHelper;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import javax.inject.Inject;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class ConstructionFragment extends Fragment {
 
     @Inject
-    ViewModelProvider.Factory viewModelFactory;
+    ApiService apiService;
 
-    private TextView tvProjectName;
-    private TextView tvProjectArea;
+    @Inject
+    TokenManager tokenManager;
+
+    @Inject
+    ViewModelProvider.Factory viewModelFactory;
 
     private String constructionStageId;
 
@@ -54,75 +66,126 @@ public class ConstructionFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Bundle args = getArguments();
-        if (args == null) {
-            Log.e("ConstructionFragment", "Arguments are null");
+        // Загрузить информацию о проекте
+        loadProjectInfo(view);
+
+        // Обработчики быстрых действий
+        view.findViewById(R.id.card_documents).setOnClickListener(v -> {
+            Toast.makeText(getContext(), "Открыть документы", Toast.LENGTH_SHORT).show();
+        });
+
+        view.findViewById(R.id.card_video).setOnClickListener(v -> {
+            openVideoStream();
+        });
+
+        view.findViewById(R.id.card_chat).setOnClickListener(v -> {
+            Toast.makeText(getContext(), "Открыть чат", Toast.LENGTH_SHORT).show();
+        });
+
+        // Обработчик кнопки "Смотреть трансляцию"
+        view.findViewById(R.id.btn_watch_stream).setOnClickListener(v -> {
+            openVideoStream();
+        });
+
+        // Настройка кнопок навигации
+        StageNavigationHelper.setupStageButtons(this, view);
+    }
+
+    private void openVideoStream() {
+        if (constructionStageId != null) {
+            Bundle args = new Bundle();
+            args.putString("constructionId", constructionStageId);
+            NavHostFragment.findNavController(this).navigate(R.id.videoStreamFragment, args);
+        } else {
+            Toast.makeText(getContext(), "ID проекта не найден", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void loadProjectInfo(View view) {
+        String userId = tokenManager.getUserId();
+        if (userId == null) {
             return;
         }
 
-        String projectId = args.getString("projectId");
-        constructionStageId = args.getString("constructionStageId");
-        String startDate = args.getString("startDate");
+        TextView tvProjectName = view.findViewById(R.id.tv_project_name);
+        TextView tvProjectDescription = view.findViewById(R.id.tv_project_description);
+        TextView tvProjectStatus = view.findViewById(R.id.tv_project_status);
+        TextView tvProjectDates = view.findViewById(R.id.tv_project_dates);
 
-        tvProjectName = view.findViewById(R.id.tv_info_project_name);
-        tvProjectArea = view.findViewById(R.id.tv_info_project_area);
-        TextView tvStartDate = view.findViewById(R.id.tv_info_start_date);
+        apiService.getConstructionStagesByCustomer(userId)
+                .enqueue(new Callback<List<ConstructionStageResponseDto>>() {
+                    @Override
+                    public void onResponse(@NonNull Call<List<ConstructionStageResponseDto>> call,
+                                           @NonNull Response<List<ConstructionStageResponseDto>> response) {
+                        if (response.isSuccessful() && response.body() != null && !response.body().isEmpty()) {
+                            ConstructionStageResponseDto stage = response.body().get(0);
+                            constructionStageId = stage.getId();
 
-        tvStartDate.setText(formatDate(startDate));
+                            // Загрузить и заполнить карточку с информацией о проекте
+                            ProjectInfoHelper.loadAndBindProjectInfo(
+                                    view,
+                                    stage.getProjectId(),
+                                    stage.getStartDate(),
+                                    "Строительство",
+                                    viewModelFactory,
+                                    ConstructionFragment.this,
+                                    getViewLifecycleOwner()
+                            );
 
-        ProjectDetailsViewModel viewModel = new ViewModelProvider(this, viewModelFactory)
-                .get(ProjectDetailsViewModel.class);
+                            // Заполнить данные верхней карточки
+                            tvProjectName.setText(stage.getName());
+                            if (stage.getDescription() != null && !stage.getDescription().isEmpty()) {
+                                tvProjectDescription.setText(stage.getDescription());
+                                tvProjectDescription.setVisibility(View.VISIBLE);
+                            } else {
+                                tvProjectDescription.setVisibility(View.GONE);
+                            }
 
-        viewModel.getProject().observe(getViewLifecycleOwner(), result -> {
-            switch (result.getStatus()) {
-                case LOADING:
-                    Log.d("ConstructionFragment", "Loading project...");
-                    break;
-                case SUCCESS:
-                    bindProjectData(result.getData());
-                    break;
-                case ERROR:
-                    Log.e("ConstructionFragment", "Error: " + result.getMessage());
-                    Toast.makeText(getContext(), result.getMessage(), Toast.LENGTH_SHORT).show();
-                    break;
-            }
-        });
+                            tvProjectStatus.setText(formatStatus(stage.getStatus()));
+                            tvProjectDates.setText(formatDates(stage.getStartDate(), stage.getEndDate()));
+                        }
+                    }
 
-        if (projectId != null) {
-            viewModel.loadProject(projectId);
+                    @Override
+                    public void onFailure(@NonNull Call<List<ConstructionStageResponseDto>> call, @NonNull Throwable t) {
+                        Log.e("ConstructionFragment", "Error loading project info", t);
+                    }
+                });
+    }
+
+    private String formatStatus(String status) {
+        if (status == null) return "";
+        switch (status) {
+            case "PLANNED":
+                return "Согласование документации";
+            case "IN_PROGRESS":
+                return "Строительство";
+            case "COMPLETED":
+                return "Завершение строительства";
+            default:
+                return status;
         }
-
-        // Обработчик кнопки "Видео"
-        view.findViewById(R.id.card_video).setOnClickListener(v -> {
-            args.putString("constructionId", constructionStageId);
-            NavHostFragment.findNavController(this).navigate(R.id.videoStreamFragment, args);
-        });
     }
 
-    private void bindProjectData(ProjectEntity project) {
-        if (project == null) return;
-
-        tvProjectName.setText(project.getTitle());
-        tvProjectArea.setText(getString(R.string.project_area_format, project.getArea()));
-    }
-
-    private String formatDate(String date) {
-        if (date == null) return "";
+    private String formatDates(String startDate, String endDate) {
+        if (startDate == null || endDate == null) {
+            return "";
+        }
 
         SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault());
         inputFormat.setTimeZone(java.util.TimeZone.getTimeZone("UTC"));
-        SimpleDateFormat outputFormat = new SimpleDateFormat("dd MMMM yyyy", Locale.forLanguageTag("ru"));
+        SimpleDateFormat outputFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
 
         try {
-            Date parsedDate = inputFormat.parse(date);
-            if (parsedDate != null) {
-                return outputFormat.format(parsedDate);
+            Date start = inputFormat.parse(startDate);
+            Date end = inputFormat.parse(endDate);
+            if (start != null && end != null) {
+                return outputFormat.format(start) + " – " + outputFormat.format(end);
             }
-        } catch (Exception e) {
-            Log.e("ConstructionFragment", "Error parsing date", e);
-            return date;
+        } catch (ParseException e) {
+            Log.e("ConstructionFragment", "Error parsing dates", e);
         }
 
-        return date;
+        return startDate + " – " + endDate;
     }
 }

@@ -35,4 +35,28 @@
         android:id="@+id/videoStreamFragment"
         android:name="com.msi.android.ui.fragment.VideoStreamFragment"
         android:label="Видеонаблюдение"/>
+
+    <!-- Подготовка -->
+    <fragment
+        android:id="@+id/preparationFragment"
+        android:name="com.msi.android.ui.fragment.PreparationStageFragment"
+        android:label="Подготовка" />
+
+    <!-- Стройка -->
+    <fragment
+        android:id="@+id/constructionFragment"
+        android:name="com.msi.android.ui.fragment.ConstructionFragment"
+        android:label="Стройка" />
+
+    <!-- Приёмка -->
+    <fragment
+        android:id="@+id/acceptanceFragment"
+        android:name="com.msi.android.ui.fragment.AcceptanceFragment"
+        android:label="Приемка объекта" />
+
+<!--    &lt;!&ndash; Гарантия &ndash;&gt;-->
+<!--    <fragment-->
+<!--        android:id="@+id/warrantyFragment"-->
+<!--        android:name="com.msi.android.ui.fragment.WarrantyFragment"-->
+<!--        android:label="Гарантия" />-->
 </navigation>

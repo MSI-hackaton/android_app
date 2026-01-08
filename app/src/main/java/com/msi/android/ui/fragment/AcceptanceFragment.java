@@ -33,7 +33,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PreparationStageFragment extends Fragment {
+public class AcceptanceFragment extends Fragment {
 
     @Inject
     ApiService apiService;
@@ -56,7 +56,7 @@ public class PreparationStageFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_preparation_stage, container, false);
+        return inflater.inflate(R.layout.fragment_acceptance, container, false);
     }
 
     @Override
@@ -66,11 +66,22 @@ public class PreparationStageFragment extends Fragment {
         // Загрузить информацию о проекте
         loadProjectInfo(view);
 
-        // Обработчики быстрых действий
+        // Кнопка "Принять работу"
+        view.findViewById(R.id.btn_accept_work).setOnClickListener(v -> {
+            Toast.makeText(getContext(), "Функция в разработке", Toast.LENGTH_SHORT).show();
+        });
+
+        // Ссылка "Принять работу" в уведомлении
+        view.findViewById(R.id.tv_accept_work_link).setOnClickListener(v -> {
+            Toast.makeText(getContext(), "Функция в разработке", Toast.LENGTH_SHORT).show();
+        });
+
+        // Карточка "Документы"
         view.findViewById(R.id.card_documents).setOnClickListener(v -> {
             Toast.makeText(getContext(), "Открыть документы", Toast.LENGTH_SHORT).show();
         });
 
+        // Карточка "Чат"
         view.findViewById(R.id.card_chat).setOnClickListener(v -> {
             Toast.makeText(getContext(), "Открыть чат", Toast.LENGTH_SHORT).show();
         });
@@ -98,16 +109,18 @@ public class PreparationStageFragment extends Fragment {
                         if (response.isSuccessful() && response.body() != null && !response.body().isEmpty()) {
                             ConstructionStageResponseDto stage = response.body().get(0);
 
+                            // Загрузить и заполнить карточку с информацией о проекте
                             ProjectInfoHelper.loadAndBindProjectInfo(
                                     view,
                                     stage.getProjectId(),
                                     stage.getStartDate(),
-                                    "Подготовка",
+                                    "Приемка",
                                     viewModelFactory,
-                                    PreparationStageFragment.this,
+                                    AcceptanceFragment.this,
                                     getViewLifecycleOwner()
                             );
 
+                            // Заполнить данные верхней карточки
                             tvProjectName.setText(stage.getName());
                             if (stage.getDescription() != null && !stage.getDescription().isEmpty()) {
                                 tvProjectDescription.setText(stage.getDescription());
@@ -123,7 +136,7 @@ public class PreparationStageFragment extends Fragment {
 
                     @Override
                     public void onFailure(@NonNull Call<List<ConstructionStageResponseDto>> call, @NonNull Throwable t) {
-                        Log.e("PreparationStageFragment", "Error loading project info", t);
+                        Log.e("AcceptanceFragment", "Error loading project info", t);
                     }
                 });
     }
@@ -158,7 +171,7 @@ public class PreparationStageFragment extends Fragment {
                 return outputFormat.format(start) + " – " + outputFormat.format(end);
             }
         } catch (ParseException e) {
-            Log.e("PreparationStageFragment", "Error parsing dates", e);
+            Log.e("AcceptanceFragment", "Error parsing dates", e);
         }
 
         return startDate + " – " + endDate;

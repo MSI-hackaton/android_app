@@ -20,6 +20,8 @@
     <color name="preparation_border_blue">#bedbff</color>
     <color name="preparation_border_gray">#ebe6e7</color>
     <color name="construction_video_green">#00a63e</color>
-
+    <color name="acceptance_heading_purple">#59168b</color>
+    <color name="acceptance_text_purple">#8200db</color>
+    <color name="acceptance_border_purple">#e9d4ff</color>
 
     </resources>

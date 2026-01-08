@@ -3,6 +3,7 @@ package com.msi.android.di;
 import android.content.Context;
 
 import com.msi.android.ui.activity.MainActivity;
+import com.msi.android.ui.fragment.AcceptanceFragment;
 import com.msi.android.ui.fragment.AuthFragment;
 import com.msi.android.ui.fragment.ConstructionFragment;
 import com.msi.android.ui.fragment.NavigationBar;
@@ -33,6 +34,9 @@ public interface AppComponent {
     void inject(ConstructionFragment fragment);
 
     void inject(VideoStreamFragment fragment);
+
+    void inject(AcceptanceFragment fragment);
+
 
 
 
