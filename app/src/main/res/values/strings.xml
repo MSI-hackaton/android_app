@@ -2,4 +2,5 @@
     <string name="app_name">MSI</string>
     <string name="search">Поиск</string>
     <string name="filter">Фильтр</string>
+    <string name="project_area_format">%.0f м²</string>
 </resources>

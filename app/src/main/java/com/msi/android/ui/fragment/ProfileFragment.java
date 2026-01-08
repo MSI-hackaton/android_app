@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -23,6 +24,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 import javax.inject.Inject;
 
@@ -31,6 +33,10 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ProfileFragment extends Fragment {
+
+    private String currentProjectId;
+    private String currentConstructionStageId;
+    private String currentStartDate;
 
     @Inject
     ApiService apiService;
@@ -79,6 +85,10 @@ public class ProfileFragment extends Fragment {
             projectInfoContainer.setVisibility(View.GONE);
             tvNoProject.setVisibility(View.VISIBLE);
         }
+
+        view.findViewById(R.id.btn_stage_preparation).setOnClickListener(v -> {
+            showStageFragment(new PreparationStageFragment());
+        });
     }
 
     private void loadProjectInfo(String userId, LinearLayout container, TextView tvNoProject,
@@ -95,6 +105,11 @@ public class ProfileFragment extends Fragment {
                         if (response.isSuccessful() && response.body() != null && !response.body().isEmpty()) {
                             Log.d("ProfileFragment", "Stages count: " + response.body().size());
                             ConstructionStageResponseDto stage = response.body().get(0);
+
+                            currentProjectId = stage.getProjectId();
+                            currentConstructionStageId = stage.getId();
+                            currentStartDate = stage.getStartDate();
+
 
                             container.setVisibility(View.VISIBLE);
                             tvNoProject.setVisibility(View.GONE);
@@ -170,4 +185,27 @@ public class ProfileFragment extends Fragment {
     private String getUserId() {
         return tokenManager.getUserId();
     }
+
+    private void showStageFragment(Fragment fragment) {
+        FrameLayout container = getView().findViewById(R.id.stage_fragment_container);
+
+        Bundle args = new Bundle();
+        args.putString("projectId", currentProjectId);
+        args.putString("constructionStageId", currentConstructionStageId);
+        args.putString("startDate", currentStartDate);
+        fragment.setArguments(args);
+
+        if (container.getChildCount() > 0) {
+            getChildFragmentManager()
+                    .beginTransaction()
+                    .remove(Objects.requireNonNull(getChildFragmentManager().findFragmentById(R.id.stage_fragment_container)))
+                    .commit();
+        } else {
+            getChildFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.stage_fragment_container, fragment)
+                    .commit();
+        }
+    }
 }
+

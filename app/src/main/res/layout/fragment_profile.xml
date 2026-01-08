@@ -191,6 +191,14 @@
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
+            <!-- Контейнер для фрагмента этапа -->
+            <FrameLayout
+                android:id="@+id/stage_fragment_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"/>
+
+
         </LinearLayout>
     </ScrollView>
 
@@ -217,6 +225,7 @@
             android:useDefaultMargins="true">
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_stage_preparation"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
@@ -226,6 +235,7 @@
                 app:cornerRadius="12dp"/>
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_stage_construction"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
@@ -235,6 +245,7 @@
                 app:cornerRadius="12dp"/>
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_stage_acceptance"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
@@ -244,6 +255,7 @@
                 app:cornerRadius="12dp"/>
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_stage_warranty"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
