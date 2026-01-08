@@ -12,6 +12,7 @@ import com.msi.android.ui.fragment.ProfileFragment;
 import com.msi.android.ui.fragment.ProjectDetailsFragment;
 import com.msi.android.ui.fragment.ProjectsListFragment;
 import com.msi.android.ui.fragment.VideoStreamFragment;
+import com.msi.android.ui.fragment.WarrantyFragment;
 
 import dagger.BindsInstance;
 import dagger.Component;
@@ -36,6 +37,8 @@ public interface AppComponent {
     void inject(VideoStreamFragment fragment);
 
     void inject(AcceptanceFragment fragment);
+
+    void inject(WarrantyFragment fragment);
 
 
 

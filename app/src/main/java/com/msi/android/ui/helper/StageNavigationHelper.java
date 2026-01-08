@@ -22,8 +22,8 @@ public class StageNavigationHelper {
                 NavHostFragment.findNavController(fragment).navigate(R.id.acceptanceFragment)
         );
 
-//        view.findViewById(R.id.btn_stage_warranty).setOnClickListener(v ->
-//                NavHostFragment.findNavController(fragment).navigate(R.id.warrantyFragment)
-//        );
+        view.findViewById(R.id.btn_stage_warranty).setOnClickListener(v ->
+                NavHostFragment.findNavController(fragment).navigate(R.id.warrantyFragment)
+        );
     }
 }

@@ -54,9 +54,9 @@
         android:name="com.msi.android.ui.fragment.AcceptanceFragment"
         android:label="Приемка объекта" />
 
-<!--    &lt;!&ndash; Гарантия &ndash;&gt;-->
-<!--    <fragment-->
-<!--        android:id="@+id/warrantyFragment"-->
-<!--        android:name="com.msi.android.ui.fragment.WarrantyFragment"-->
-<!--        android:label="Гарантия" />-->
+    <!-- Гарантия -->
+    <fragment
+        android:id="@+id/warrantyFragment"
+        android:name="com.msi.android.ui.fragment.WarrantyFragment"
+        android:label="Гарантия" />
 </navigation>

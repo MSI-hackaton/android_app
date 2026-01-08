@@ -152,7 +152,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="6dp"
                         android:progress="90"
-                        app:indicatorColor="@color/blue"
+                        app:indicatorColor="@color/md_theme_primary"
                         app:trackColor="@color/preparation_border_gray"
                         app:trackCornerRadius="8dp"/>
 
