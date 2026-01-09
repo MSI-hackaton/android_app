@@ -18,6 +18,13 @@
             app:argType="string" />
     </fragment>
 
+    <fragment
+        android:id="@+id/orderProjectFragment"
+        android:name="com.msi.android.ui.fragment.OrderProjectFragment"
+        android:label="Заказ проекта">
+
+    </fragment>
+
     <!-- Личный кабинет -->
     <fragment
         android:id="@+id/profileFragment"
