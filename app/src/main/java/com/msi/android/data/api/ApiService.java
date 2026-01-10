@@ -1,5 +1,7 @@
 package com.msi.android.data.api;
 
+import com.msi.android.data.dto.ChatMessageCreateDto;
+import com.msi.android.data.dto.ChatMessageResponseDto;
 import com.msi.android.data.dto.ConstructionStageResponseDto;
 import com.msi.android.data.dto.ProjectDto;
 import com.msi.android.data.dto.VideoStreamResponseDto;
@@ -7,7 +9,9 @@ import com.msi.android.data.dto.VideoStreamResponseDto;
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 /**
@@ -27,4 +31,15 @@ public interface ApiService {
 
     @GET("/api/video-streams/constructions/{constructionId}")
     Call<List<VideoStreamResponseDto>> getVideoStreams(@Path("constructionId") String constructionId);
+
+    @POST("api/chat/constructions/{constructionId}/messages")
+    Call<ChatMessageResponseDto> sendChatMessage(
+            @Path("constructionId") String constructionId,
+            @Body ChatMessageCreateDto message
+    );
+
+    @GET("api/chat/constructions/{constructionId}/messages")
+    Call<List<ChatMessageResponseDto>> getChatHistory(
+            @Path("constructionId") String constructionId
+    );
 }

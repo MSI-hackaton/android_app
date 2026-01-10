@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,7 +15,14 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.msi.android.App;
 import com.msi.android.R;
+import com.msi.android.data.api.ApiService;
 import com.msi.android.data.api.TokenManager;
+import com.msi.android.data.dto.ConstructionStageResponseDto;
+
+import java.util.List;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import javax.inject.Inject;
 
@@ -22,6 +30,9 @@ public class NavigationBar extends Fragment {
 
     @Inject
     TokenManager tokenManager;
+
+    @Inject
+    ApiService apiService;
 
     private View homeCircle, catalogCircle, chatCircle, profileCircle;
     private TextView homeText, catalogText, chatText, profileText;
@@ -68,10 +79,19 @@ public class NavigationBar extends Fragment {
             // navController.navigate(R.id.catalogFragment);
         });
 
-        // Чат (пример, можно добавить навигацию)
+        // Чат / Авторизация
         view.findViewById(R.id.chatButton).setOnClickListener(v -> {
             setActiveButton("chat");
-            // navController.navigate(R.id.chatFragment);
+            if (tokenManager.isAuthorized()) {
+                String userId = tokenManager.getUserId();
+                if (userId != null) {
+                    loadConstructionIdAndOpenChat(navController, userId);
+                } else {
+                    navController.navigate(R.id.authFragment);
+                }
+            } else {
+                navController.navigate(R.id.authFragment);
+            }
         });
 
         // Профиль / Авторизация
@@ -117,4 +137,28 @@ public class NavigationBar extends Fragment {
                 break;
         }
     }
+
+    private void loadConstructionIdAndOpenChat(NavController navController, String userId) {
+        apiService.getConstructionStagesByCustomer(userId)
+                .enqueue(new Callback<List<ConstructionStageResponseDto>>() {
+                    @Override
+                    public void onResponse(@NonNull Call<List<ConstructionStageResponseDto>> call,
+                                           @NonNull Response<List<ConstructionStageResponseDto>> response) {
+                        if (response.isSuccessful() && response.body() != null && !response.body().isEmpty()) {
+                            String constructionId = response.body().get(0).getId();
+                            Bundle args = new Bundle();
+                            args.putString("constructionId", constructionId);
+                            navController.navigate(R.id.chatFragment, args);
+                        } else {
+                            Toast.makeText(getContext(), "Проект не найден", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<List<ConstructionStageResponseDto>> call, @NonNull Throwable t) {
+                        Toast.makeText(getContext(), "Ошибка загрузки данных", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
 }

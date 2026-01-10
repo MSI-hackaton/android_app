@@ -79,7 +79,13 @@ public class ConstructionFragment extends Fragment {
         });
 
         view.findViewById(R.id.card_chat).setOnClickListener(v -> {
-            Toast.makeText(getContext(), "Открыть чат", Toast.LENGTH_SHORT).show();
+            if (constructionStageId != null) {
+                Bundle args = new Bundle();
+                args.putString("constructionId", constructionStageId);
+                NavHostFragment.findNavController(this).navigate(R.id.chatFragment, args);
+            } else {
+                Toast.makeText(getContext(), "Проект не загружен", Toast.LENGTH_SHORT).show();
+            }
         });
 
         // Обработчик кнопки "Смотреть трансляцию"

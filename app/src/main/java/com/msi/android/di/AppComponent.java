@@ -5,6 +5,7 @@ import android.content.Context;
 import com.msi.android.ui.activity.MainActivity;
 import com.msi.android.ui.fragment.AcceptanceFragment;
 import com.msi.android.ui.fragment.AuthFragment;
+import com.msi.android.ui.fragment.ChatFragment;
 import com.msi.android.ui.fragment.ConstructionFragment;
 import com.msi.android.ui.fragment.DocumentsFragment;
 import com.msi.android.ui.fragment.FinalReportFragment;
@@ -50,6 +51,8 @@ public interface AppComponent {
     void inject(SignActFragment fragment);
 
     void inject(ProfileFragment fragment);
+
+    void inject(ChatFragment fragment);
 
     @Component.Builder
     interface Builder {

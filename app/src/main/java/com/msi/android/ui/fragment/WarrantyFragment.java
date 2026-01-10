@@ -36,6 +36,8 @@ import retrofit2.Response;
 
 public class WarrantyFragment extends Fragment {
 
+    private String constructionStageId;
+
     @Inject
     ApiService apiService;
 
@@ -74,7 +76,13 @@ public class WarrantyFragment extends Fragment {
 
         // Карточка "Чат"
         view.findViewById(R.id.card_chat).setOnClickListener(v -> {
-            Toast.makeText(getContext(), "Открыть чат", Toast.LENGTH_SHORT).show();
+            if (constructionStageId != null) {
+                Bundle args = new Bundle();
+                args.putString("constructionId", constructionStageId);
+                NavHostFragment.findNavController(this).navigate(R.id.chatFragment, args);
+            } else {
+                Toast.makeText(getContext(), "Проект не загружен", Toast.LENGTH_SHORT).show();
+            }
         });
 
         // Настройка кнопок навигации
@@ -94,6 +102,8 @@ public class WarrantyFragment extends Fragment {
                                            @NonNull Response<List<ConstructionStageResponseDto>> response) {
                         if (response.isSuccessful() && response.body() != null && !response.body().isEmpty()) {
                             ConstructionStageResponseDto stage = response.body().get(0);
+
+                            constructionStageId = stage.getId();
 
                             // Загрузить и заполнить карточку с информацией о проекте
                             ProjectInfoHelper.loadAndBindProjectInfo(

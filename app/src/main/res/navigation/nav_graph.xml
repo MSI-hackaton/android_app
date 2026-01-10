@@ -78,4 +78,13 @@
         android:name="com.msi.android.ui.fragment.DocumentsFragment"
         android:label="Окно документов"/>
 
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="com.msi.android.ui.fragment.ChatFragment"
+        android:label="Чат">
+        <argument
+            android:name="constructionId"
+            app:argType="string" />
+    </fragment>
+
 </navigation>

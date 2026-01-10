@@ -7,4 +7,13 @@
     <string name="video_stream">Видеопоток</string>
     <string name="date">Дата</string>
     <string name="time">Время</string>
+    <string name="date_placeholder">06.12.2024</string>
+    <string name="chat_personal_manager">Персональный менеджер</string>
+    <string name="chat_description_attach">Attach</string>
+    <string name="chat_message_placeholder">Введите сообщение...</string>
+    <string name="chat_send_description">Send</string>
+    <string name="chat_message_received_placeholder">Добрый день! Я ваш персональный менеджер Алексей.</string>
+    <string name="chat_message_time_received_placeholder">10:30</string>
+    <string name="chat_message_sent_placeholder">Здравствуйте! Подскажите, когда планируется завершение кровельных работ?</string>
+    <string name="chat_message_time_sent_placeholder">11:15</string>
 </resources>
