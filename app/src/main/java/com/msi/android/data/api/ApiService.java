@@ -43,6 +43,7 @@ public interface ApiService {
     @GET("api/chat/constructions/{constructionId}/messages")
     Call<List<ChatMessageResponseDto>> getChatHistory(
             @Path("constructionId") String constructionId
+    );
     @POST("/api/requests/projects/{id}")
     Call<Void> sendProjectRequest(
             @Path("id") String projectId,
