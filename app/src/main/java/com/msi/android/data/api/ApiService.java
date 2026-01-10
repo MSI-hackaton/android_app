@@ -2,12 +2,15 @@ package com.msi.android.data.api;
 
 import com.msi.android.data.dto.LoginRequestDto;
 import com.msi.android.data.dto.ProjectDto;
+import com.msi.android.data.dto.ProjectRequestBody;
 import com.msi.android.data.dto.TokenResponseDto;
 
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 /**
@@ -22,4 +25,9 @@ public interface ApiService {
     @GET("/api/projects/{id}")
     Call<ProjectDto> getProjectById(@Path("id") String id);
 
+    @POST("/api/requests/projects/{id}")
+    Call<Void> sendProjectRequest(
+            @Path("id") String projectId,
+            @Body ProjectRequestBody body
+    );
 }

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!-- Проект -->
+            <LinearLayout
+                android:orientation="vertical"
+                android:padding="12dp"
+                android:background="#F7F7F7"
+                android:layout_marginBottom="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/projectTitle"
+                    android:text="Проект «Современный»"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/projectPrice"
+                    android:text="8 500 000 ₽"
+                    android:textSize="16sp"
+                    android:textColor="@color/md_theme_primary"
+                    android:layout_marginTop="4dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <!-- Имя -->
+            <TextView
+                android:text="Имя *"
+                android:textColor="@color/black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/inputName"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@android:drawable/edit_text"
+                android:padding="8dp"
+                android:layout_marginBottom="16dp"/>
+
+            <!-- Телефон -->
+            <TextView
+                android:text="Телефон *"
+                android:textColor="@color/black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/inputPhone"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@android:drawable/edit_text"
+                android:padding="8dp"
+                android:layout_marginBottom="16dp"/>
+
+            <!-- Email -->
+            <TextView
+                android:text="Email *"
+                android:textColor="@color/black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/inputEmail"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@android:drawable/edit_text"
+                android:padding="8dp"
+                android:layout_marginBottom="16dp"/>
+
+            <!-- Комментарий -->
+            <TextView
+                android:text="Комментарий"
+                android:textColor="@color/black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/inputComment"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:gravity="top"
+                android:background="@android:drawable/edit_text"
+                android:padding="8dp"
+                android:layout_marginBottom="16dp"/>
+
+            <!-- Согласие -->
+            <CheckBox
+                android:id="@+id/checkboxAgree"
+                android:text="Я согласен на обработку персональных данных"
+                android:layout_marginBottom="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <!-- Submit -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/submitButton"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:enabled="false"
+        android:text="Отправить"
+        android:backgroundTint="@color/md_theme_primary"
+        android:textColor="@color/md_theme_onPrimary"/>
+
+</LinearLayout>

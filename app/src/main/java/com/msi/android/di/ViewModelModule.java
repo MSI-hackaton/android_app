@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.msi.android.ui.view.AuthViewModel;
 import com.msi.android.ui.view.MainViewModel;
+import com.msi.android.ui.view.OrderProjectViewModel;
 import com.msi.android.ui.view.ProjectDetailsViewModel;
 import com.msi.android.ui.view.SecondViewModel;
 import com.msi.android.ui.view.ViewModelFactory;
@@ -44,5 +45,10 @@ public abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(SecondViewModel.class)
     abstract ViewModel bindSecondViewModel(SecondViewModel viewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(OrderProjectViewModel.class)
+    abstract ViewModel bindOrderProjectViewModel(OrderProjectViewModel viewModel);
 }
 
