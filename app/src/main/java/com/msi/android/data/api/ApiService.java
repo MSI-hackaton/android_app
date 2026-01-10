@@ -5,6 +5,8 @@ import com.msi.android.data.dto.ChatMessageResponseDto;
 import com.msi.android.data.dto.ConstructionStageResponseDto;
 import com.msi.android.data.dto.ProjectDto;
 import com.msi.android.data.dto.VideoStreamResponseDto;
+import com.msi.android.data.dto.ProjectRequestBody;
+import com.msi.android.data.dto.TokenResponseDto;
 
 import java.util.List;
 
@@ -41,5 +43,9 @@ public interface ApiService {
     @GET("api/chat/constructions/{constructionId}/messages")
     Call<List<ChatMessageResponseDto>> getChatHistory(
             @Path("constructionId") String constructionId
+    @POST("/api/requests/projects/{id}")
+    Call<Void> sendProjectRequest(
+            @Path("id") String projectId,
+            @Body ProjectRequestBody body
     );
 }

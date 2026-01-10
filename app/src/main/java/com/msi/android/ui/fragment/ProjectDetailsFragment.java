@@ -13,7 +13,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.fragment.NavHostFragment;
 
+import com.google.android.material.button.MaterialButton;
 import com.msi.android.App;
 import com.msi.android.R;
 import com.msi.android.data.entity.ProjectEntity;
@@ -77,7 +79,7 @@ public class ProjectDetailsFragment extends Fragment {
                     break;
                 case SUCCESS:
                     progressBar.setVisibility(View.GONE);
-                    bindData(result.getData());
+                    bindData(result.getData(), view);
                     break;
                 case ERROR:
                     progressBar.setVisibility(View.GONE);
@@ -87,9 +89,10 @@ public class ProjectDetailsFragment extends Fragment {
         });
 
         viewModel.loadProject(projectId);
+
     }
 
-    private void bindData(ProjectEntity project) {
+    private void bindData(ProjectEntity project, View view) {
         if (project == null) return;
 
         title.setText(project.getTitle());
@@ -100,6 +103,16 @@ public class ProjectDetailsFragment extends Fragment {
         constructionTime.setText("Срок: " + project.getConstructionTime() + " мес");
 
         // Если есть фото (URL), загружаем вручную
+
+        MaterialButton orderButton = view.findViewById(R.id.orderButton);
+
+        orderButton.setOnClickListener(v -> {
+            Bundle args = new Bundle();
+            args.putString("projectId", project.getId());
+
+            NavHostFragment.findNavController(ProjectDetailsFragment.this)
+                    .navigate(R.id.orderProjectFragment, args);
+        });
     }
 
 

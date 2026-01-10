@@ -12,6 +12,7 @@ import com.msi.android.ui.fragment.FinalReportFragment;
 import com.msi.android.ui.fragment.NavigationBar;
 import com.msi.android.ui.fragment.PreparationStageFragment;
 import com.msi.android.ui.fragment.ProfileFragment;
+import com.msi.android.ui.fragment.OrderProjectFragment;
 import com.msi.android.ui.fragment.ProjectDetailsFragment;
 import com.msi.android.ui.fragment.ProjectsListFragment;
 import com.msi.android.ui.fragment.SignActFragment;
@@ -53,6 +54,7 @@ public interface AppComponent {
     void inject(ProfileFragment fragment);
 
     void inject(ChatFragment fragment);
+    void inject(OrderProjectFragment fragment);
 
     @Component.Builder
     interface Builder {

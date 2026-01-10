@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.msi.android.data.api.ApiService;
 import com.msi.android.data.dto.ProjectDto;
+import com.msi.android.data.dto.ProjectRequestBody;
 import com.msi.android.data.dto.ResultDto;
 import com.msi.android.data.entity.ProjectEntity;
 import com.msi.android.data.mapper.ProjectMapper;
@@ -92,5 +93,29 @@ public class ProjectRepository {
 
         return liveData;
     }
+
+    public LiveData<ResultDto<Void>> sendProjectRequest(String projectId, ProjectRequestBody body) {
+        MutableLiveData<ResultDto<Void>> liveData = new MutableLiveData<>();
+        liveData.setValue(ResultDto.loading());
+
+        apiService.sendProjectRequest(projectId, body).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccessful()) {
+                    liveData.setValue(ResultDto.success(null));
+                } else {
+                    liveData.setValue(ResultDto.error("Ошибка: " + response.code()));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                liveData.setValue(ResultDto.error("Сетевая ошибка: " + t.getMessage()));
+            }
+        });
+
+        return liveData;
+    }
+
 
 }
