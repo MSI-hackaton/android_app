@@ -5,19 +5,21 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.fragment.NavHostFragment;
 
-import com.google.android.material.progressindicator.LinearProgressIndicator;
 import com.msi.android.App;
 import com.msi.android.R;
 import com.msi.android.data.api.ApiService;
 import com.msi.android.data.api.TokenManager;
 import com.msi.android.data.dto.ConstructionStageResponseDto;
+import com.msi.android.ui.helper.ProjectInfoHelper;
 import com.msi.android.ui.helper.StageNavigationHelper;
 
 import java.text.ParseException;
@@ -32,13 +34,19 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ProfileFragment extends Fragment {
+public class AcceptanceFragment extends Fragment {
+
+    private String constructionStageId;
+
 
     @Inject
     ApiService apiService;
 
     @Inject
     TokenManager tokenManager;
+
+    @Inject
+    ViewModelProvider.Factory viewModelFactory;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,7 +60,7 @@ public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        return inflater.inflate(R.layout.fragment_acceptance, container, false);
     }
 
     @Override
@@ -62,6 +70,32 @@ public class ProfileFragment extends Fragment {
         // Загрузить информацию о проекте
         loadProjectInfo(view);
 
+        // Кнопка "Принять работу"
+        view.findViewById(R.id.btn_accept_work).setOnClickListener(v -> {
+            NavHostFragment.findNavController(this).navigate(R.id.finalReportFragment);
+        });
+
+        // Ссылка "Принять работу" в уведомлении
+        view.findViewById(R.id.tv_accept_work_link).setOnClickListener(v -> {
+            NavHostFragment.findNavController(this).navigate(R.id.finalReportFragment);
+        });
+
+        // Карточка "Документы"
+        view.findViewById(R.id.card_documents).setOnClickListener(v -> {
+            NavHostFragment.findNavController(this).navigate(R.id.documentsFragement);
+        });
+
+        // Карточка "Чат"
+        view.findViewById(R.id.card_chat).setOnClickListener(v -> {
+            if (constructionStageId != null) {
+                Bundle args = new Bundle();
+                args.putString("constructionId", constructionStageId);
+                NavHostFragment.findNavController(this).navigate(R.id.chatFragment, args);
+            } else {
+                Toast.makeText(getContext(), "Проект не загружен", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         // Настройка кнопок навигации
         StageNavigationHelper.setupStageButtons(this, view);
     }
@@ -69,19 +103,13 @@ public class ProfileFragment extends Fragment {
     private void loadProjectInfo(View view) {
         String userId = tokenManager.getUserId();
         if (userId == null) {
-            showNoProject(view);
             return;
         }
 
-        LinearLayout projectInfoContainer = view.findViewById(R.id.project_info_container);
-        TextView tvNoProject = view.findViewById(R.id.tv_no_project);
         TextView tvProjectName = view.findViewById(R.id.tv_project_name);
         TextView tvProjectDescription = view.findViewById(R.id.tv_project_description);
         TextView tvProjectStatus = view.findViewById(R.id.tv_project_status);
         TextView tvProjectDates = view.findViewById(R.id.tv_project_dates);
-        LinearLayout progressContainer = view.findViewById(R.id.progress_container);
-        TextView tvProgressPercent = view.findViewById(R.id.tv_progress_percent);
-        LinearProgressIndicator progressBar = view.findViewById(R.id.progress_bar);
 
         apiService.getConstructionStagesByCustomer(userId)
                 .enqueue(new Callback<List<ConstructionStageResponseDto>>() {
@@ -91,13 +119,20 @@ public class ProfileFragment extends Fragment {
                         if (response.isSuccessful() && response.body() != null && !response.body().isEmpty()) {
                             ConstructionStageResponseDto stage = response.body().get(0);
 
+                            constructionStageId = stage.getProjectId();
 
+                            // Загрузить и заполнить карточку с информацией о проекте
+                            ProjectInfoHelper.loadAndBindProjectInfo(
+                                    view,
+                                    stage.getProjectId(),
+                                    stage.getStartDate(),
+                                    "Приемка",
+                                    viewModelFactory,
+                                    AcceptanceFragment.this,
+                                    getViewLifecycleOwner()
+                            );
 
-                            projectInfoContainer.setVisibility(View.VISIBLE);
-                            tvNoProject.setVisibility(View.GONE);
-                            progressContainer.setVisibility(View.VISIBLE);
-                            progressBar.setVisibility(View.VISIBLE);
-
+                            // Заполнить данные верхней карточки
                             tvProjectName.setText(stage.getName());
                             if (stage.getDescription() != null && !stage.getDescription().isEmpty()) {
                                 tvProjectDescription.setText(stage.getDescription());
@@ -108,43 +143,14 @@ public class ProfileFragment extends Fragment {
 
                             tvProjectStatus.setText(formatStatus(stage.getStatus()));
                             tvProjectDates.setText(formatDates(stage.getStartDate(), stage.getEndDate()));
-
-                            // Установить прогресс (пример)
-                            int progress = calculateProgress("zero");
-                            tvProgressPercent.setText(progress + "%");
-                            progressBar.setProgress(progress);
-                        } else {
-                            showNoProject(view);
                         }
                     }
 
                     @Override
                     public void onFailure(@NonNull Call<List<ConstructionStageResponseDto>> call, @NonNull Throwable t) {
-                        Log.e("ProfileFragment", "Error loading project info", t);
-                        showNoProject(view);
+                        Log.e("AcceptanceFragment", "Error loading project info", t);
                     }
                 });
-    }
-
-    private void showNoProject(View view) {
-        view.findViewById(R.id.project_info_container).setVisibility(View.GONE);
-        view.findViewById(R.id.tv_no_project).setVisibility(View.VISIBLE);
-        view.findViewById(R.id.progress_container).setVisibility(View.GONE);
-        view.findViewById(R.id.progress_bar).setVisibility(View.GONE);
-    }
-
-    private int calculateProgress(String status) {
-        if (status == null) return 0;
-        switch (status) {
-            case "PLANNED":
-                return 10;
-            case "IN_PROGRESS":
-                return 50;
-            case "COMPLETED":
-                return 100;
-            default:
-                return 0;
-        }
     }
 
     private String formatStatus(String status) {
@@ -177,7 +183,7 @@ public class ProfileFragment extends Fragment {
                 return outputFormat.format(start) + " – " + outputFormat.format(end);
             }
         } catch (ParseException e) {
-            Log.e("ProfileFragment", "Error parsing dates", e);
+            Log.e("AcceptanceFragment", "Error parsing dates", e);
         }
 
         return startDate + " – " + endDate;

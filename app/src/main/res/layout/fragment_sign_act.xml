@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/md_theme_background">
+
+    <!-- Toolbar -->
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/md_theme_surface"
+        android:elevation="4dp"
+        app:navigationIcon="@drawable/ic_back"
+        app:title="Подписание акта"
+        app:titleTextColor="@color/black"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <!-- Карточка: Иконка и заголовок -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="@color/md_theme_surface"
+                app:strokeWidth="0dp">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="24dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:src="@drawable/ic_check"
+                        app:tint="@color/md_theme_secondary"
+                        android:layout_marginBottom="16dp"/>
+
+                    <TextView
+                        android:text="Подписание акта приема-передачи"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"/>
+
+                    <TextView
+                        android:text="Пожалуйста, подтвердите, что вы ознакомились с объектом и готовы принять его"
+                        android:textSize="14sp"
+                        android:textColor="@color/black"
+                        android:alpha="0.6"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Карточка: Документ к подписанию -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp"
+                app:cardBackgroundColor="@color/md_theme_surface"
+                app:strokeColor="@color/gray"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:padding="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Документ к подписанию"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"/>
+
+                    <!-- Строка: Документ -->
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp">
+
+                        <TextView
+                            android:text="Документ:"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:alpha="0.6"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"/>
+
+                        <TextView
+                            android:id="@+id/tv_document_type"
+                            android:text="Акт сдачи-приемки"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:gravity="end"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+                    <!-- Строка: Номер -->
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp">
+
+                        <TextView
+                            android:text="Номер:"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:alpha="0.6"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"/>
+
+                        <TextView
+                            android:id="@+id/tv_document_number"
+                            android:text="№123/2024"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:gravity="end"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+                    <!-- Строка: Дата -->
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp">
+
+                        <TextView
+                            android:text="Дата:"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:alpha="0.6"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"/>
+
+                        <TextView
+                            android:id="@+id/tv_document_date"
+                            android:text="06.12.2024"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:gravity="end"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+                <!-- Строка: Объект -->
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Объект:"
+                        android:textSize="14sp"
+                        android:textColor="@color/black"
+                        android:alpha="0.6"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/tv_document_object"
+                        android:text="Проект Современный"
+                        android:textSize="14sp"
+                        android:textColor="@color/black"
+                        android:gravity="end"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Чекбокс с подтверждением -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="@color/md_theme_surface"
+                app:strokeColor="@color/gray"
+                app:strokeWidth="1dp">
+
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/checkbox_confirmation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:text="Подтверждаю, что объект осмотрен, претензий к качеству выполненных работ и срокам не имею. Принимаю работу в полном объеме."
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    app:buttonTint="@color/blue"/>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Информационный блок -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="#E3F2FD"
+                app:strokeColor="@color/preparation_border_blue"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="После подписания"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/preparation_heading_blue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"/>
+
+                    <TextView
+                        android:text="• Будет сформирован гарантийный сертификат"
+                        android:textSize="14sp"
+                        android:textColor="@color/preparation_text_blue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"/>
+
+                    <TextView
+                        android:text="• Все документы будут доступны для скачивания"
+                        android:textSize="14sp"
+                        android:textColor="@color/preparation_text_blue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"/>
+
+                    <TextView
+                        android:text="• Начнется период гарантийного обслуживания (5 лет)"
+                        android:textSize="14sp"
+                        android:textColor="@color/preparation_text_blue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Кнопка: Подписать акт -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_sign_act"
+                android:text="Подписать акт"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                app:backgroundTint="@color/blue"
+                app:cornerRadius="12dp"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -42,5 +42,61 @@
         android:name="com.msi.android.ui.fragment.AuthFragment"
         android:label="Авторизация" />
 
+    <!-- Видеонаблюдение -->
+    <fragment
+        android:id="@+id/videoStreamFragment"
+        android:name="com.msi.android.ui.fragment.VideoStreamFragment"
+        android:label="Видеонаблюдение"/>
+
+    <!-- Подготовка -->
+    <fragment
+        android:id="@+id/preparationFragment"
+        android:name="com.msi.android.ui.fragment.PreparationStageFragment"
+        android:label="Подготовка" />
+
+    <!-- Стройка -->
+    <fragment
+        android:id="@+id/constructionFragment"
+        android:name="com.msi.android.ui.fragment.ConstructionFragment"
+        android:label="Стройка" />
+
+    <!-- Приёмка -->
+    <fragment
+        android:id="@+id/acceptanceFragment"
+        android:name="com.msi.android.ui.fragment.AcceptanceFragment"
+        android:label="Приемка объекта" />
+
+    <!-- Гарантия -->
+    <fragment
+        android:id="@+id/warrantyFragment"
+        android:name="com.msi.android.ui.fragment.WarrantyFragment"
+        android:label="Гарантия" />
+
+    <!-- Итоговый отчет -->
+    <fragment
+        android:id="@+id/finalReportFragment"
+        android:name="com.msi.android.ui.fragment.FinalReportFragment"
+        android:label="Итоговый отчет"/>
+
+    <!-- Подписание акта -->
+    <fragment
+        android:id="@+id/signActFragement"
+        android:name="com.msi.android.ui.fragment.SignActFragment"
+        android:label="Подписание акта"/>
+
+    <!-- Окно документов -->
+    <fragment
+        android:id="@+id/documentsFragement"
+        android:name="com.msi.android.ui.fragment.DocumentsFragment"
+        android:label="Окно документов"/>
+
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="com.msi.android.ui.fragment.ChatFragment"
+        android:label="Чат">
+        <argument
+            android:name="constructionId"
+            app:argType="string" />
+    </fragment>
 
 </navigation>

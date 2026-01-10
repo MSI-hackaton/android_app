@@ -46,6 +46,9 @@ dependencies {
     implementation(libs.dagger.android.support)
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
+    implementation(libs.media3.ui)
+    implementation(libs.media3.exoplayer)
+    implementation(libs.media3.hls)
 
     compileOnly(libs.lombok)
     annotationProcessor(libs.lombok)

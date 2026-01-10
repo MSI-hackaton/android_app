@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/md_theme_background">
+
+    <!-- Scrollable content -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <!-- Карточка с информацией о проекте -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp"
+                app:cardBackgroundColor="@color/md_theme_surface"
+                app:strokeColor="@color/preparation_border_gray"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:padding="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Добро пожаловать"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"/>
+
+                    <LinearLayout
+                        android:id="@+id/project_info_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:text="Ваш проект:"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:alpha="0.6"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"/>
+
+                        <TextView
+                            android:id="@+id/tv_project_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:layout_marginBottom="12dp"/>
+
+                        <TextView
+                            android:text="Описание:"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:alpha="0.6"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"/>
+
+                        <TextView
+                            android:id="@+id/tv_project_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:layout_marginBottom="12dp"/>
+
+                        <TextView
+                            android:text="Текущий статус:"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:alpha="0.6"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"/>
+
+                        <TextView
+                            android:id="@+id/tv_project_status"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:layout_marginBottom="12dp"/>
+
+                        <TextView
+                            android:text="Период строительства:"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:alpha="0.6"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"/>
+
+                        <TextView
+                            android:id="@+id/tv_project_dates"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:layout_marginBottom="16dp"/>
+                    </LinearLayout>
+
+                    <!-- Прогресс -->
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp">
+
+                        <TextView
+                            android:text="Прогресс"
+                            android:textColor="@color/black"
+                            android:alpha="0.6"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+
+                        <TextView
+                            android:text="50%"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+                    <com.google.android.material.progressindicator.LinearProgressIndicator
+                        android:layout_width="match_parent"
+                        android:layout_height="6dp"
+                        android:progress="50"
+                        app:indicatorColor="@color/md_theme_primary"
+                        app:trackColor="@color/preparation_border_gray"
+                        app:trackCornerRadius="8dp"/>
+
+                    <!-- Кнопка "Смотреть трансляцию" -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_watch_stream"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="Смотреть трансляцию"
+                        android:textColor="@color/md_theme_onPrimary"
+                        app:backgroundTint="@color/blue"
+                        app:cornerRadius="12dp"/>
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Карточка: Быстрые действия -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp"
+                app:cardBackgroundColor="@color/md_theme_surface"
+                app:strokeColor="@color/preparation_border_gray"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Быстрые действия"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"/>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="3">
+
+                        <!-- Документы -->
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/card_documents"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="6dp"
+                            app:cardCornerRadius="12dp"
+                            app:cardElevation="0dp"
+                            app:strokeColor="@color/preparation_border_gray"
+                            app:strokeWidth="1dp">
+
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:gravity="center"
+                                android:padding="16dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <ImageView
+                                    android:layout_width="28dp"
+                                    android:layout_height="28dp"
+                                    android:src="@drawable/ic_document"
+                                    android:layout_marginBottom="8dp"
+                                    app:tint="@color/document_blue" />
+
+                                <TextView
+                                    android:text="Документы"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/black"
+                                    android:gravity="center"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"/>
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <!-- Видео -->
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/card_video"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="3dp"
+                            android:layout_marginEnd="3dp"
+                            app:cardCornerRadius="12dp"
+                            app:cardElevation="0dp"
+                            app:strokeColor="@color/preparation_border_gray"
+                            app:strokeWidth="1dp">
+
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:gravity="center"
+                                android:padding="16dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <ImageView
+                                    android:layout_width="28dp"
+                                    android:layout_height="28dp"
+                                    android:src="@drawable/ic_video"
+                                    android:layout_marginBottom="8dp"
+                                    app:tint="@color/construction_video_green" />
+
+                                <TextView
+                                    android:text="Видео"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/black"
+                                    android:gravity="center"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"/>
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <!-- Чат -->
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/card_chat"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="6dp"
+                            app:cardCornerRadius="12dp"
+                            app:cardElevation="0dp"
+                            app:strokeColor="@color/preparation_border_gray"
+                            app:strokeWidth="1dp">
+
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:gravity="center"
+                                android:padding="16dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <ImageView
+                                    android:layout_width="28dp"
+                                    android:layout_height="28dp"
+                                    android:src="@drawable/ic_chat"
+                                    android:layout_marginBottom="8dp"
+                                    app:tint="@color/purple" />
+
+                                <TextView
+                                    android:text="Чат"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/black"
+                                    android:gravity="center"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"/>
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <include layout="@layout/include_project_info_card"/>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+    <!-- Демо: переключение статусов -->
+    <include layout="@layout/include_stage_buttons"/>
+
+</LinearLayout>

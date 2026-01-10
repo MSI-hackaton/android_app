@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/md_theme_background">
+
+    <!-- Header с кнопкой назад и заголовком -->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:padding="16dp"
+        android:background="@color/black">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_back"
+            android:contentDescription="@string/back"
+            android:scaleType="centerInside"
+            app:tint="@color/white"/>
+
+        <TextView
+            android:text="Видеонаблюдение"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"/>
+    </LinearLayout>
+
+    <!-- ExoPlayer контейнер -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/black">
+
+        <androidx.media3.ui.PlayerView
+            android:id="@+id/playerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:show_buffering="never"
+            app:resize_mode="fit"
+            app:use_controller="false"/>
+
+        <!-- LIVE Badge -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:gravity="center_vertical"
+            android:background="@drawable/bg_live_badge">
+
+            <View
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:layout_margin="8dp"
+                android:background="@drawable/ic_circle_live"/>
+
+            <TextView
+                android:text="LIVE"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:layout_marginEnd="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <!-- Информация о камере внизу видео -->
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:padding="16dp"
+            android:background="@drawable/bg_gradient_dark">
+
+            <TextView
+                android:id="@+id/tvCameraName"
+                android:text="Камера №1 - Общий вид"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"/>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/ic_calendar"
+                    app:tint="@color/white"
+                    android:contentDescription="@string/date"
+                    android:layout_marginEnd="4dp"/>
+
+                <TextView
+                    android:text="06.12.2024"
+                    android:textSize="12sp"
+                    android:textColor="@color/white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"/>
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/ic_clock"
+                    app:tint="@color/white"
+                    android:contentDescription="@string/time"
+                    android:layout_marginEnd="4dp"/>
+
+                <TextView
+                    android:text="14:32"
+                    android:textSize="12sp"
+                    android:textColor="@color/white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+
+    <!-- Список камер -->
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:background="@color/md_theme_surface">
+
+        <TextView
+            android:text="Информация о камере"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"/>
+
+        <TextView
+            android:id="@+id/tvCameraInfo"
+            android:text="Камера №1 - Общий вид\nОбновление: каждые 5 минут\nКачество: HD 1080p"
+            android:textSize="13sp"
+            android:textColor="@color/black"
+            android:alpha="0.7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Горизонтальный список кнопок камер -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:id="@+id/camerasListContainer"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </HorizontalScrollView>
+    </LinearLayout>
+
+</LinearLayout>

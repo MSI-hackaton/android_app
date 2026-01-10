@@ -1,14 +1,12 @@
 package com.msi.android.di;
 
+import com.google.gson.Gson;
 import com.msi.android.data.api.ApiService;
 import com.msi.android.data.api.AuthApiService;
 import com.msi.android.data.api.TokenManager;
-
 import dagger.Module;
 import dagger.Provides;
-
 import javax.inject.Singleton;
-
 import okhttp3.Authenticator;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -24,8 +22,7 @@ public class NetworkModule {
 
     @Provides
     @Singleton
-    public Retrofit provideRetrofit(TokenManager tokenManager) {
-
+    public OkHttpClient provideOkHttpClient(TokenManager tokenManager) {
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         logging.setLevel(HttpLoggingInterceptor.Level.BODY);
 
@@ -52,12 +49,16 @@ public class NetworkModule {
             }
         };
 
-        OkHttpClient client = new OkHttpClient.Builder()
+        return new OkHttpClient.Builder()
                 .addInterceptor(logging)
                 .addInterceptor(authInterceptor)
                 .authenticator(tokenAuthenticator)
                 .build();
+    }
 
+    @Provides
+    @Singleton
+    public Retrofit provideRetrofit(OkHttpClient client) {
         return new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -79,5 +80,11 @@ public class NetworkModule {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         return retrofit.create(AuthApiService.class);
+    }
+
+    @Provides
+    @Singleton
+    public Gson provideGson() {
+        return new Gson();
     }
 }

@@ -9,7 +9,23 @@
 
     <color name="black">#FF000000</color>
     <color name="blue">#3B82F6</color>
+    <color name="document_blue">#155dfc</color>
     <color name="gray">#a1a1a1</color>
+    <color name="purple">#9810fa</color>
+    <color name="white">#FFFFFF</color>
 
 
-</resources>
+    <color name="preparation_heading_blue">#1c398e</color>
+    <color name="preparation_text_blue">#1447e6</color>
+    <color name="preparation_border_blue">#bedbff</color>
+    <color name="preparation_border_gray">#ebe6e7</color>
+    <color name="construction_video_green">#00a63e</color>
+    <color name="acceptance_heading_purple">#59168b</color>
+    <color name="acceptance_text_purple">#8200db</color>
+    <color name="acceptance_border_purple">#e9d4ff</color>
+    <color name="final_report_background_blue">#faf5ff</color>
+    <color name="final_report_border_purple">#e9d4ff</color>
+    <color name="document_background_gray">#fbf9fa</color>
+
+
+    </resources>

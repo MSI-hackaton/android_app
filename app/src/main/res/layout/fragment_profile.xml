@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <!-- Card -->
+            <!-- Карточка с информацией о проекте -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -35,46 +35,113 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <!-- Header -->
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical"
+                    <TextView
+                        android:text="Добро пожаловать"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="16dp">
+                        android:layout_marginBottom="16dp"/>
 
-                        <!-- Status dot -->
-                        <View
-                            android:layout_width="12dp"
-                            android:layout_height="12dp"
-                            android:layout_marginEnd="12dp"
-                            android:background="@android:color/transparent"
-                            android:backgroundTint="@color/md_theme_primary"/>
+                    <LinearLayout
+                        android:id="@+id/project_info_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone">
 
                         <TextView
-                            android:text="Добро пожаловать"
-                            android:textSize="18sp"
+                            android:text="Ваш проект:"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:alpha="0.6"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"/>
+
+                        <TextView
+                            android:id="@+id/tv_project_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
                             android:textStyle="bold"
                             android:textColor="@color/black"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:layout_marginBottom="12dp"/>
+
+                        <TextView
+                            android:text="Описание:"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:alpha="0.6"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"/>
+
+                        <TextView
+                            android:id="@+id/tv_project_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:layout_marginBottom="12dp"/>
+
+                        <TextView
+                            android:text="Текущий статус:"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:alpha="0.6"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"/>
+
+                        <TextView
+                            android:id="@+id/tv_project_status"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:layout_marginBottom="12dp"/>
+
+                        <TextView
+                            android:text="Период строительства:"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:alpha="0.6"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"/>
+
+                        <TextView
+                            android:id="@+id/tv_project_dates"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:layout_marginBottom="16dp"/>
                     </LinearLayout>
 
-                    <!-- Description -->
                     <TextView
+                        android:id="@+id/tv_no_project"
                         android:text="Выберите проект в каталоге"
                         android:textColor="@color/md_theme_primary"
                         android:alpha="0.7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="16dp"/>
+                        android:layout_marginBottom="16dp"
+                        android:visibility="visible"/>
 
-                    <!-- Progress header -->
+                    <!-- Прогресс -->
                     <LinearLayout
+                        android:id="@+id/progress_container"
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp">
+                        android:layout_marginBottom="8dp"
+                        android:visibility="gone">
 
                         <TextView
                             android:text="Прогресс"
@@ -85,6 +152,7 @@
                             android:layout_weight="1"/>
 
                         <TextView
+                            android:id="@+id/tv_progress_percent"
                             android:text="0%"
                             android:textStyle="bold"
                             android:textColor="@color/black"
@@ -92,83 +160,22 @@
                             android:layout_height="wrap_content"/>
                     </LinearLayout>
 
-                    <!-- Progress -->
                     <com.google.android.material.progressindicator.LinearProgressIndicator
+                        android:id="@+id/progress_bar"
                         android:layout_width="match_parent"
                         android:layout_height="6dp"
                         android:progress="0"
+                        android:visibility="gone"
                         app:indicatorColor="@color/md_theme_primary"
-                        app:trackColor="@color/md_theme_primary"
-                        android:alpha="0.2"
+                        app:trackColor="@color/preparation_border_gray"
                         app:trackCornerRadius="8dp"/>
-
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
         </LinearLayout>
     </ScrollView>
 
-    <!-- Bottom section -->
-    <LinearLayout
-        android:orientation="vertical"
-        android:padding="16dp"
-        android:background="@color/md_theme_surface"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:text="Демо: переключение статусов"
-            android:textColor="@color/black"
-            android:alpha="0.6"
-            android:layout_marginBottom="8dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <GridLayout
-            android:columnCount="2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:useDefaultMargins="true">
-
-            <com.google.android.material.button.MaterialButton
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:text="Подготовка"
-                android:textColor="@color/md_theme_onPrimary"
-                app:backgroundTint="@color/md_theme_primary"
-                app:cornerRadius="12dp"/>
-
-            <com.google.android.material.button.MaterialButton
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:text="Стройка"
-                android:textColor="@color/black"
-                app:backgroundTint="@color/md_theme_secondary"
-                app:cornerRadius="12dp"/>
-
-            <com.google.android.material.button.MaterialButton
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:text="Приемка"
-                android:textColor="@color/md_theme_onPrimary"
-                app:backgroundTint="@color/blue"
-                app:cornerRadius="12dp"/>
-
-            <com.google.android.material.button.MaterialButton
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:text="Гарантия"
-                android:textColor="@color/md_theme_primary"
-                app:backgroundTint="@color/md_theme_surface"
-                app:strokeColor="@color/md_theme_primary"
-                app:strokeWidth="1dp"
-                app:cornerRadius="12dp"/>
-        </GridLayout>
-
-    </LinearLayout>
+    <!-- Демо: переключение статусов -->
+    <include layout="@layout/include_stage_buttons"/>
 
 </LinearLayout>

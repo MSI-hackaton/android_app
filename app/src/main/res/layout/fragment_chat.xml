@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/md_theme_background">
+
+    <!-- Header -->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:padding="16dp"
+        android:background="@color/white">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_back"
+            android:contentDescription="@string/back"
+            android:scaleType="centerInside"
+            app:tint="@color/black"/>
+
+        <TextView
+            android:id="@+id/tvManagerName"
+            android:text="@string/chat_personal_manager"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"/>
+    </LinearLayout>
+
+    <!-- RecyclerView для сообщений -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvMessages"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="16dp"
+        android:clipToPadding="false"/>
+
+    <!-- Верхняя граница -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#E5E7EB"/>
+
+    <!-- Поле ввода -->
+    <LinearLayout
+        android:id="@+id/layoutInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:background="@color/white"
+        android:gravity="center_vertical">
+
+        <ImageButton
+            android:id="@+id/btnAttach"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_attach"
+            android:contentDescription="@string/chat_description_attach"/>
+
+        <EditText
+            android:id="@+id/etMessage"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:autofillHints=""
+            android:background="@drawable/bg_message_input"
+            android:hint="@string/chat_message_placeholder"
+            android:inputType="textCapSentences|textMultiLine"
+            android:maxLines="4"
+            android:minHeight="40dp"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="10dp"
+            android:textSize="14sp" />
+
+        <ImageButton
+            android:id="@+id/btnSend"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bg_send_button_disabled"
+            android:src="@drawable/ic_send"
+            android:contentDescription="@string/chat_send_description"
+            android:enabled="false"/>
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/md_theme_background">
+
+    <!-- Toolbar -->
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/md_theme_surface"
+        android:elevation="4dp"
+        app:navigationIcon="@drawable/ic_back"
+        app:title="Итоговый отчет"
+        app:titleTextColor="@color/black"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <!-- Карточка: Поздравление -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="@color/final_report_background_blue"
+                app:strokeWidth="0dp"
+                app:strokeColor="@color/final_report_border_purple">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="24dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:src="@drawable/ic_check"
+                        app:tint="@color/purple"
+                        android:layout_marginBottom="16dp"/>
+
+                    <TextView
+                        android:text="Поздравляем!"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"/>
+
+                    <TextView
+                        android:text="Ваш дом успешно построен и готов к сдаче"
+                        android:textSize="14sp"
+                        android:textColor="@color/black"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Карточка: Информация о проекте -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp"
+                app:cardBackgroundColor="@color/md_theme_surface"
+                app:strokeColor="@color/gray"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:padding="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Информация о проекте"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"/>
+
+                    <!-- Строка: Проект -->
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp">
+
+                        <TextView
+                            android:text="Проект:"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:alpha="0.6"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"/>
+
+                        <TextView
+                            android:id="@+id/tv_project_name"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:gravity="end"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+                    <!-- Строка: Площадь -->
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp">
+
+                        <TextView
+                            android:text="Площадь:"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:alpha="0.6"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"/>
+
+                        <TextView
+                            android:id="@+id/tv_project_area"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:gravity="end"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+                    <!-- Строка: Дата начала -->
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp">
+
+                        <TextView
+                            android:text="Дата начала:"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:alpha="0.6"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"/>
+
+                        <TextView
+                            android:id="@+id/tv_start_date"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:gravity="end"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+                    <!-- Строка: Дата завершения -->
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp">
+
+                        <TextView
+                            android:text="Дата завершения:"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:alpha="0.6"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"/>
+
+                        <TextView
+                            android:id="@+id/tv_end_date"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:gravity="end"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+                    <!-- Строка: Срок строительства -->
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Срок строительства:"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:alpha="0.6"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"/>
+
+                        <TextView
+                            android:id="@+id/tv_construction_period"
+
+                            android:textSize="14sp"
+                            android:textColor="@color/blue"
+                            android:gravity="end"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Карточка: Документы к подписанию -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp"
+                app:cardBackgroundColor="@color/md_theme_surface"
+                app:strokeColor="@color/gray"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:padding="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Документы к подписанию"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"/>
+
+                    <!-- Документ 1 -->
+                    <LinearLayout
+                        android:id="@+id/doc_acceptance_act"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingVertical="12dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <TextView
+                            android:text="Акт приема-передачи"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"/>
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_download"
+                            app:tint="@color/blue"/>
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/preparation_border_gray"/>
+
+                    <!-- Документ 2 -->
+                    <LinearLayout
+                        android:id="@+id/doc_closing_documents"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingVertical="12dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <TextView
+                            android:text="Закрывающие документы"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"/>
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_download"
+                            app:tint="@color/blue"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Карточка: Гарантийное обслуживание -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="#E3F2FD"
+                app:strokeColor="@color/preparation_border_blue"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Гарантийное обслуживание"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/preparation_heading_blue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"/>
+
+                    <TextView
+                        android:text="После подписания акта приема-передачи вы получите гарантийный сертификат на 5 лет"
+                        android:textSize="14sp"
+                        android:textColor="@color/preparation_text_blue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Кнопка: Перейти к подписанию акта -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_sign_documents"
+                android:text="Перейти к подписанию акта"
+                android:textSize="11sp"
+                android:textColor="@color/white"
+                app:backgroundTint="@color/blue"
+                app:cornerRadius="12dp"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
