@@ -75,8 +75,8 @@ public class NavigationBar extends Fragment {
 
         // Каталог (пример, можно добавить навигацию)
         view.findViewById(R.id.catalogButton).setOnClickListener(v -> {
-            setActiveButton("catalog");
-            // navController.navigate(R.id.catalogFragment);
+            setActiveButton("home");
+            navController.navigate(R.id.projectsListFragment);
         });
 
         // Чат / Авторизация

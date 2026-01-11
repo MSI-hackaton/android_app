@@ -19,6 +19,7 @@ import com.msi.android.R;
 import com.msi.android.data.api.ApiService;
 import com.msi.android.data.api.TokenManager;
 import com.msi.android.data.dto.ConstructionStageResponseDto;
+import com.msi.android.data.dto.ConstructionStageUpdateDto;
 import com.msi.android.ui.helper.ProjectInfoHelper;
 import com.msi.android.ui.helper.StageNavigationHelper;
 
@@ -67,7 +68,7 @@ public class PreparationStageFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         // Загрузить информацию о проекте
-        loadProjectInfo(view);
+        updateStatusThenLoad(view, "PLANNED");
 
         // Обработчики быстрых действий
         view.findViewById(R.id.card_documents).setOnClickListener(v -> {
@@ -156,6 +157,49 @@ public class PreparationStageFragment extends Fragment {
             default:
                 return status;
         }
+    }
+
+    private void updateStatusThenLoad(View view, String newStatus) {
+        String userId = tokenManager.getUserId();
+        if (userId == null) return;
+
+        // Шаг 1: Получаем ID этапа
+        apiService.getConstructionStagesByCustomer(userId)
+                .enqueue(new Callback<List<ConstructionStageResponseDto>>() {
+                    @Override
+                    public void onResponse(@NonNull Call<List<ConstructionStageResponseDto>> call,
+                                           @NonNull Response<List<ConstructionStageResponseDto>> response) {
+                        if (response.isSuccessful() && response.body() != null && !response.body().isEmpty()) {
+                            String stageId = response.body().get(0).getId();
+
+                            // Шаг 2: Обновляем статус
+                            ConstructionStageUpdateDto updateDto = new ConstructionStageUpdateDto();
+                            updateDto.setStatus(newStatus);
+
+                            apiService.updateStage(stageId, updateDto)
+                                    .enqueue(new Callback<ConstructionStageResponseDto>() {
+                                        @Override
+                                        public void onResponse(@NonNull Call<ConstructionStageResponseDto> call,
+                                                               @NonNull Response<ConstructionStageResponseDto> response) {
+                                            // Шаг 3: После обновления загружаем данные
+                                            loadProjectInfo(view);
+                                        }
+
+                                        @Override
+                                        public void onFailure(@NonNull Call<ConstructionStageResponseDto> call, @NonNull Throwable t) {
+                                            Log.e("PreparationStageFragment", "Error updating status", t);
+                                            // Даже если обновление не удалось, загружаем данные
+                                            loadProjectInfo(view);
+                                        }
+                                    });
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<List<ConstructionStageResponseDto>> call, @NonNull Throwable t) {
+                        Log.e("PreparationStageFragment", "Error loading stages", t);
+                    }
+                });
     }
 
     private String formatDates(String startDate, String endDate) {

@@ -3,6 +3,7 @@ package com.msi.android.data.api;
 import com.msi.android.data.dto.ChatMessageCreateDto;
 import com.msi.android.data.dto.ChatMessageResponseDto;
 import com.msi.android.data.dto.ConstructionStageResponseDto;
+import com.msi.android.data.dto.ConstructionStageUpdateDto;
 import com.msi.android.data.dto.ProjectDto;
 import com.msi.android.data.dto.VideoStreamResponseDto;
 import com.msi.android.data.dto.ProjectRequestBody;
@@ -14,6 +15,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 /**
@@ -48,5 +50,11 @@ public interface ApiService {
     Call<Void> sendProjectRequest(
             @Path("id") String projectId,
             @Body ProjectRequestBody body
+    );
+
+    @PUT("/api/construction-stages/{id}")
+    Call<ConstructionStageResponseDto> updateStage(
+            @Path("id") String id,
+            @Body ConstructionStageUpdateDto updateDto
     );
 }
