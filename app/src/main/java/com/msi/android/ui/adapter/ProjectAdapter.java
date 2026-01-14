@@ -15,6 +15,8 @@ import com.bumptech.glide.Glide;
 import com.msi.android.R;
 import com.msi.android.data.entity.ProjectEntity;
 
+import java.text.DecimalFormat;
+
 public class ProjectAdapter extends ListAdapter<ProjectEntity, ProjectAdapter.ProjectViewHolder> {
 
     private OnProjectClickListener clickListener;
@@ -70,7 +72,8 @@ public class ProjectAdapter extends ListAdapter<ProjectEntity, ProjectAdapter.Pr
         public void bind(ProjectEntity project, OnProjectClickListener listener) {
             title.setText(project.getTitle());
             description.setText(project.getDescription());
-            price.setText(String.valueOf(project.getPrice()));
+            DecimalFormat df = new DecimalFormat("0");
+            price.setText(df.format(project.getPrice()));
             String previewUrl = project.getPreviewPhoto();
             if (previewUrl != null && !previewUrl.isEmpty()) {
                 Glide.with(image.getContext())

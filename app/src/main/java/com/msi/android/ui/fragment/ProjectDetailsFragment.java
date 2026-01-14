@@ -22,6 +22,8 @@ import com.msi.android.R;
 import com.msi.android.data.entity.ProjectEntity;
 import com.msi.android.ui.view.ProjectDetailsViewModel;
 
+import java.text.DecimalFormat;
+
 import javax.inject.Inject;
 
 public class ProjectDetailsFragment extends Fragment {
@@ -98,7 +100,8 @@ public class ProjectDetailsFragment extends Fragment {
 
         title.setText(project.getTitle());
         description.setText(project.getDescription());
-        price.setText("Цена: " + project.getPrice());
+        DecimalFormat df = new DecimalFormat("0");
+        price.setText("Цена: " + df.format(project.getPrice()));
         area.setText("Площадь: " + project.getArea() + " м²");
         floors.setText("Этажей: " + project.getFloors());
         constructionTime.setText("Срок: " + project.getConstructionTime() + " мес");
