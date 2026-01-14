@@ -23,6 +23,9 @@ daggerAndroidSupport = "2.56.2"
 media3-exoplayer = "1.2.0"
 media3-ui = "1.2.0"
 media3-exoplayer-hls = "1.2.0"
+annotations = "5.0.0-rc01"
+compiler = "5.0.0-rc01"
+glide = "5.0.0-rc01"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -49,6 +52,9 @@ dagger-android-support = { group = "com.google.dagger", name = "dagger-android-s
 media3-exoplayer = { group = "androidx.media3", name = "media3-exoplayer", version.ref = "media3-exoplayer" }
 media3-ui = { group = "androidx.media3", name = "media3-ui", version.ref = "media3-ui" }
 media3-hls = { group = "androidx.media3", name = "media3-exoplayer-hls", version.ref = "media3-exoplayer-hls" }
+annotations = { group = "com.github.bumptech.glide", name = "annotations", version.ref = "annotations" }
+compiler = { group = "com.github.bumptech.glide", name = "compiler", version.ref = "compiler" }
+glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }
 
 
 

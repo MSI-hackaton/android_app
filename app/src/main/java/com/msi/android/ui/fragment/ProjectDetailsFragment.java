@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.button.MaterialButton;
 import com.msi.android.App;
 import com.msi.android.R;
@@ -102,7 +103,16 @@ public class ProjectDetailsFragment extends Fragment {
         floors.setText("Этажей: " + project.getFloors());
         constructionTime.setText("Срок: " + project.getConstructionTime() + " мес");
 
-        // Если есть фото (URL), загружаем вручную
+        String previewUrl = project.getPreviewPhoto();
+        if (previewUrl != null && !previewUrl.isEmpty()) {
+            Glide.with(projectImage.getContext())
+                    .load(previewUrl)
+                    .placeholder(android.R.drawable.ic_menu_gallery) // пока загружается
+                    .error(android.R.drawable.ic_menu_report_image)  // если ошибка загрузки
+                    .into(projectImage);
+        } else {
+            projectImage.setImageResource(android.R.drawable.ic_menu_gallery);
+        }
 
         MaterialButton orderButton = view.findViewById(R.id.orderButton);
 

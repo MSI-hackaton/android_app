@@ -49,12 +49,14 @@ dependencies {
     implementation(libs.media3.ui)
     implementation(libs.media3.exoplayer)
     implementation(libs.media3.hls)
+    implementation(libs.glide)
 
     compileOnly(libs.lombok)
     annotationProcessor(libs.lombok)
     annotationProcessor(libs.mapstruct.processor)
     annotationProcessor(libs.dagger.compiler)
     annotationProcessor(libs.dagger.android.processor)
+    annotationProcessor(libs.glide)
 
 
     testImplementation(libs.junit)

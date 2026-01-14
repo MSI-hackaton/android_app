@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.msi.android.R;
 import com.msi.android.data.entity.ProjectEntity;
 
@@ -70,7 +71,17 @@ public class ProjectAdapter extends ListAdapter<ProjectEntity, ProjectAdapter.Pr
             title.setText(project.getTitle());
             description.setText(project.getDescription());
             price.setText(String.valueOf(project.getPrice()));
-            image.setImageResource(android.R.drawable.ic_menu_gallery);
+            String previewUrl = project.getPreviewPhoto();
+            if (previewUrl != null && !previewUrl.isEmpty()) {
+                Glide.with(image.getContext())
+                        .load(previewUrl)
+                        .placeholder(android.R.drawable.ic_menu_gallery) // пока грузится
+                        .error(android.R.drawable.ic_menu_report_image)  // если ошибка загрузки
+                        .into(image);
+            } else {
+                // если фото нет, показываем заглушку
+                image.setImageResource(android.R.drawable.ic_menu_gallery);
+            }
 
             itemView.setOnClickListener(v -> {
                 if (listener != null) {
